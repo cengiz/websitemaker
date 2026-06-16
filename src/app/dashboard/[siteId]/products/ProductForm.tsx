@@ -1,12 +1,15 @@
 import { ImageUploadField } from "@/components/dashboard/ImageUploadField";
+import { SlugField } from "@/components/dashboard/SlugField";
 import type { Product } from "@/generated/prisma/client";
 
 export function ProductForm({
   siteId,
+  siteSlug,
   product,
   action,
 }: {
   siteId: string;
+  siteSlug: string;
   product?: Product;
   action: (formData: FormData) => void;
 }) {
@@ -16,6 +19,8 @@ export function ProductForm({
         <span className="text-sm font-medium text-zinc-700">Ürün adı</span>
         <input className="input" name="title" defaultValue={product?.title ?? ""} required />
       </label>
+
+      <SlugField urlPrefix={`/s/${siteSlug}/urunler/`} initialValue={product?.slug ?? ""} />
 
       <ImageUploadField name="imageUrl" siteId={siteId} initialUrl={product?.imageUrl} label="Görsel" />
 

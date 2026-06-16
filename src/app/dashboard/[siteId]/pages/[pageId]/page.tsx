@@ -36,7 +36,7 @@ export default async function EditPagePage({
         </p>
       )}
 
-      <PageForm siteId={site.id} page={page} action={action} />
+      <PageForm siteId={site.id} siteSlug={site.slug} page={page} action={action} />
     </div>
   );
 }

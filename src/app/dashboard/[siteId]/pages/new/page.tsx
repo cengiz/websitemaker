@@ -31,7 +31,7 @@ export default async function NewPagePage({
         </p>
       )}
 
-      <PageForm siteId={site.id} action={action} />
+      <PageForm siteId={site.id} siteSlug={site.slug} action={action} />
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default async function EditProductPage({
         <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">Lütfen bilgileri kontrol edin.</p>
       )}
 
-      <ProductForm siteId={site.id} product={product} action={action} />
+      <ProductForm siteId={site.id} siteSlug={site.slug} product={product} action={action} />
     </div>
   );
 }

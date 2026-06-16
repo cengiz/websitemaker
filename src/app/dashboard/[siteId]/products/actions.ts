@@ -9,6 +9,7 @@ import { uniqueProductSlug } from "@/lib/uniqueSlug";
 
 const schema = z.object({
   title: z.string().trim().min(1, "Başlık gerekli."),
+  slug: z.string().optional().default(""),
   description: z.string().optional().default(""),
   price: z.string().optional().default(""),
   imageUrl: z.string().optional().default(""),
@@ -32,7 +33,8 @@ export async function createProduct(siteId: string, formData: FormData) {
     redirect(`${listUrl}/new?error=invalid`);
   }
 
-  const slug = await uniqueProductSlug(site.id, parsed.data.title);
+  const slugBase = parsed.data.slug.trim() || parsed.data.title;
+  const slug = await uniqueProductSlug(site.id, slugBase);
 
   await prisma.product.create({
     data: {
@@ -67,10 +69,8 @@ export async function updateProduct(siteId: string, productId: string, formData:
     redirect(`${editUrl}?error=invalid`);
   }
 
-  const slug =
-    parsed.data.title.trim() === product.title
-      ? product.slug
-      : await uniqueProductSlug(site.id, parsed.data.title, product.id);
+  const slugBase = parsed.data.slug.trim() || parsed.data.title;
+  const slug = await uniqueProductSlug(site.id, slugBase, product.id);
 
   await prisma.product.update({
     where: { id: product.id },

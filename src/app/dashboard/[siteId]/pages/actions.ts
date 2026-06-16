@@ -11,6 +11,7 @@ import type { MenuItem } from "@/lib/menu";
 
 const schema = z.object({
   title: z.string().trim().min(1, "Başlık gerekli."),
+  slug: z.string().optional().default(""),
   body: z.string().optional().default(""),
   imageUrl: z.string().optional().default(""),
   published: z.string().optional(),
@@ -20,12 +21,11 @@ export async function createPage(siteId: string, formData: FormData) {
   const { site } = await requireSiteOwner(siteId);
   const listUrl = `/dashboard/${site.id}/pages`;
 
-  console.log("[createPage] formData keys:", [...formData.keys()]);
-  console.log("[createPage] imageUrl:", formData.get("imageUrl"));
   const parsed = schema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) redirect(`${listUrl}/new?error=invalid`);
 
-  const slug = await uniquePageSlug(site.id, parsed.data.title);
+  const slugBase = parsed.data.slug.trim() || parsed.data.title;
+  const slug = await uniquePageSlug(site.id, slugBase);
   const published = parsed.data.published === "on";
 
   const page = await prisma.sitePage.create({
@@ -73,10 +73,8 @@ export async function updatePage(siteId: string, pageId: string, formData: FormD
   const parsed = schema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) redirect(`${editUrl}?error=invalid`);
 
-  const slug =
-    parsed.data.title.trim() === page.title
-      ? page.slug
-      : await uniquePageSlug(site.id, parsed.data.title, page.id);
+  const slugBase = parsed.data.slug.trim() || parsed.data.title;
+  const slug = await uniquePageSlug(site.id, slugBase, page.id);
 
   const published = parsed.data.published === "on";
 

@@ -1,12 +1,15 @@
 import { ImageUploadField } from "@/components/dashboard/ImageUploadField";
+import { SlugField } from "@/components/dashboard/SlugField";
 import type { NewsPost } from "@/generated/prisma/client";
 
 export function NewsForm({
   siteId,
+  siteSlug,
   post,
   action,
 }: {
   siteId: string;
+  siteSlug: string;
   post?: NewsPost;
   action: (formData: FormData) => void;
 }) {
@@ -16,6 +19,8 @@ export function NewsForm({
         <span className="text-sm font-medium text-zinc-700">Başlık</span>
         <input className="input" name="title" defaultValue={post?.title ?? ""} required />
       </label>
+
+      <SlugField urlPrefix={`/s/${siteSlug}/haberler/`} initialValue={post?.slug ?? ""} />
 
       <ImageUploadField name="coverImageUrl" siteId={siteId} initialUrl={post?.coverImageUrl} label="Kapak görseli" />
 

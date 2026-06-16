@@ -9,6 +9,7 @@ import { uniqueNewsSlug } from "@/lib/uniqueSlug";
 
 const schema = z.object({
   title: z.string().trim().min(1, "Başlık gerekli."),
+  slug: z.string().optional().default(""),
   excerpt: z.string().optional().default(""),
   body: z.string().optional().default(""),
   coverImageUrl: z.string().optional().default(""),
@@ -24,7 +25,8 @@ export async function createNewsPost(siteId: string, formData: FormData) {
     redirect(`${listUrl}/new?error=invalid`);
   }
 
-  const slug = await uniqueNewsSlug(site.id, parsed.data.title);
+  const slugBase = parsed.data.slug.trim() || parsed.data.title;
+  const slug = await uniqueNewsSlug(site.id, slugBase);
   const published = parsed.data.published === "on";
 
   await prisma.newsPost.create({
@@ -60,8 +62,8 @@ export async function updateNewsPost(siteId: string, postId: string, formData: F
     redirect(`${editUrl}?error=invalid`);
   }
 
-  const slug =
-    parsed.data.title.trim() === post.title ? post.slug : await uniqueNewsSlug(site.id, parsed.data.title, post.id);
+  const slugBase = parsed.data.slug.trim() || parsed.data.title;
+  const slug = await uniqueNewsSlug(site.id, slugBase, post.id);
 
   const published = parsed.data.published === "on";
 

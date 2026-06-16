@@ -29,7 +29,7 @@ export default async function NewNewsPage({
         <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">Lütfen bilgileri kontrol edin.</p>
       )}
 
-      <NewsForm siteId={site.id} action={action} />
+      <NewsForm siteId={site.id} siteSlug={site.slug} action={action} />
     </div>
   );
 }

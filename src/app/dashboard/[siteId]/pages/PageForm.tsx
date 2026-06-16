@@ -1,14 +1,17 @@
 "use client";
 
 import { ImageUploadField } from "@/components/dashboard/ImageUploadField";
+import { SlugField } from "@/components/dashboard/SlugField";
 import type { SitePage } from "@/generated/prisma/client";
 
 export function PageForm({
   siteId,
+  siteSlug,
   page,
   action,
 }: {
   siteId: string;
+  siteSlug: string;
   page?: SitePage;
   action: (formData: FormData) => void;
 }) {
@@ -18,6 +21,8 @@ export function PageForm({
         <span className="text-sm font-medium text-zinc-700">Başlık</span>
         <input className="input" name="title" defaultValue={page?.title ?? ""} required />
       </label>
+
+      <SlugField urlPrefix={`/s/${siteSlug}/sayfa/`} initialValue={page?.slug ?? ""} />
 
       <ImageUploadField name="imageUrl" siteId={siteId} initialUrl={page?.imageUrl} label="Görsel" />
 
