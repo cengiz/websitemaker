@@ -1,7 +1,35 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
 import { prisma } from "@/lib/db";
+import { ProductGallery } from "@/components/site/ProductGallery";
+
+const APP_URL = (process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; productSlug: string }>;
+}): Promise<Metadata> {
+  const { slug, productSlug } = await params;
+  const site = await getPublicSiteBySlug(slug);
+  if (!site) return {};
+  const product = await prisma.product.findFirst({
+    where: { siteId: site.id, slug: productSlug, published: true },
+    select: { title: true, description: true, imageUrl: true },
+  });
+  if (!product) return {};
+  const image = product.imageUrl
+    ? product.imageUrl.startsWith("http") ? product.imageUrl : `${APP_URL}${product.imageUrl}`
+    : undefined;
+  return {
+    title: product.title,
+    description: product.description ?? undefined,
+    openGraph: { title: product.title, description: product.description ?? undefined, images: image ? [{ url: image }] : undefined },
+    twitter: { card: "summary_large_image", images: image ? [image] : undefined },
+  };
+}
 
 export default async function SiteProductDetailPage({
   params,
@@ -26,14 +54,17 @@ export default async function SiteProductDetailPage({
         ← Tüm ürünler
       </Link>
 
-      {product.imageUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={product.imageUrl}
-          alt={product.title}
-          className="mt-4 h-64 w-full rounded-lg object-cover"
-        />
-      ) : null}
+      {(() => {
+        let gallery: string[] = [];
+        try { gallery = product.images ? JSON.parse(product.images) : []; } catch { gallery = []; }
+        const allImages = [
+          ...(product.imageUrl ? [product.imageUrl] : []),
+          ...gallery,
+        ];
+        return allImages.length > 0 ? (
+          <ProductGallery images={allImages} title={product.title} />
+        ) : null;
+      })()}
 
       <h1 className="mt-6 text-2xl font-bold">{product.title}</h1>
       {product.category && (

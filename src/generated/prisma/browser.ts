@@ -38,6 +38,11 @@ export type Product = Prisma.ProductModel
  */
 export type SitePage = Prisma.SitePageModel
 /**
+ * Model ContactMessage
+ * 
+ */
+export type ContactMessage = Prisma.ContactMessageModel
+/**
  * Model NewsPost
  * 
  */

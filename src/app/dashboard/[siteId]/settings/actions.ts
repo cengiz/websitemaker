@@ -22,6 +22,10 @@ const schema = z.object({
   twitter: z.string().optional().default(""),
   website: z.string().optional().default(""),
   published: z.string().optional(),
+  seoDescription: z.string().optional().default(""),
+  ogImageUrl: z.string().optional().default(""),
+  gaId: z.string().optional().default(""),
+  metaPixelId: z.string().optional().default(""),
 });
 
 export async function updateSiteSettings(siteId: string, formData: FormData) {
@@ -67,6 +71,10 @@ export async function updateSiteSettings(siteId: string, formData: FormData) {
       address: parsed.data.address || null,
       socials: hasSocials ? JSON.stringify(socials) : null,
       published: parsed.data.published === "on",
+      seoDescription: parsed.data.seoDescription || null,
+      ogImageUrl: parsed.data.ogImageUrl || null,
+      gaId: parsed.data.gaId || null,
+      metaPixelId: parsed.data.metaPixelId || null,
     },
   });
 

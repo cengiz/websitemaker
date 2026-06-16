@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
 import { prisma } from "@/lib/db";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const site = await getPublicSiteBySlug((await params).slug);
+  if (!site) return {};
+  return { title: "Haberler" };
+}
 
 export default async function SiteNewsPage({
   params,

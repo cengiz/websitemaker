@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug, parseSocials } from "@/lib/sites";
+import { ContactForm } from "@/components/site/ContactForm";
+
+const APP_URL = (process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const site = await getPublicSiteBySlug((await params).slug);
+  if (!site) return {};
+  return { title: "İletişim" };
+}
 
 export default async function SiteContactPage({
   params,
@@ -16,14 +30,14 @@ export default async function SiteContactPage({
   const hasContactInfo =
     site.contactEmail || site.contactPhone || site.address || socialEntries.length > 0;
 
+  const apiUrl = `${APP_URL}/api/contact/${site.id}`;
+
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <h1 className="mb-6 text-2xl font-bold">İletişim</h1>
 
-      {!hasContactInfo ? (
-        <p className="text-[var(--site-muted)]">İletişim bilgisi eklenmemiş.</p>
-      ) : (
-        <div className="flex flex-col gap-3 rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-6">
+      {hasContactInfo && (
+        <div className="mb-8 flex flex-col gap-3 rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-6">
           {site.contactEmail && (
             <div>
               <p className="text-sm text-[var(--site-muted)]">E-posta</p>
@@ -66,6 +80,11 @@ export default async function SiteContactPage({
           )}
         </div>
       )}
+
+      <div className="rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-6">
+        <h2 className="mb-4 text-lg font-semibold">Mesaj Gönder</h2>
+        <ContactForm apiUrl={apiUrl} />
+      </div>
     </div>
   );
 }

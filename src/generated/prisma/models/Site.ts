@@ -41,6 +41,10 @@ export type SiteMinAggregateOutputType = {
   published: boolean | null
   createdAt: Date | null
   menuConfig: string | null
+  seoDescription: string | null
+  ogImageUrl: string | null
+  gaId: string | null
+  metaPixelId: string | null
 }
 
 export type SiteMaxAggregateOutputType = {
@@ -60,6 +64,10 @@ export type SiteMaxAggregateOutputType = {
   published: boolean | null
   createdAt: Date | null
   menuConfig: string | null
+  seoDescription: string | null
+  ogImageUrl: string | null
+  gaId: string | null
+  metaPixelId: string | null
 }
 
 export type SiteCountAggregateOutputType = {
@@ -79,6 +87,10 @@ export type SiteCountAggregateOutputType = {
   published: number
   createdAt: number
   menuConfig: number
+  seoDescription: number
+  ogImageUrl: number
+  gaId: number
+  metaPixelId: number
   _all: number
 }
 
@@ -100,6 +112,10 @@ export type SiteMinAggregateInputType = {
   published?: true
   createdAt?: true
   menuConfig?: true
+  seoDescription?: true
+  ogImageUrl?: true
+  gaId?: true
+  metaPixelId?: true
 }
 
 export type SiteMaxAggregateInputType = {
@@ -119,6 +135,10 @@ export type SiteMaxAggregateInputType = {
   published?: true
   createdAt?: true
   menuConfig?: true
+  seoDescription?: true
+  ogImageUrl?: true
+  gaId?: true
+  metaPixelId?: true
 }
 
 export type SiteCountAggregateInputType = {
@@ -138,6 +158,10 @@ export type SiteCountAggregateInputType = {
   published?: true
   createdAt?: true
   menuConfig?: true
+  seoDescription?: true
+  ogImageUrl?: true
+  gaId?: true
+  metaPixelId?: true
   _all?: true
 }
 
@@ -230,6 +254,10 @@ export type SiteGroupByOutputType = {
   published: boolean
   createdAt: Date
   menuConfig: string | null
+  seoDescription: string | null
+  ogImageUrl: string | null
+  gaId: string | null
+  metaPixelId: string | null
   _count: SiteCountAggregateOutputType | null
   _min: SiteMinAggregateOutputType | null
   _max: SiteMaxAggregateOutputType | null
@@ -270,10 +298,15 @@ export type SiteWhereInput = {
   published?: Prisma.BoolFilter<"Site"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Site"> | Date | string
   menuConfig?: Prisma.StringNullableFilter<"Site"> | string | null
+  seoDescription?: Prisma.StringNullableFilter<"Site"> | string | null
+  ogImageUrl?: Prisma.StringNullableFilter<"Site"> | string | null
+  gaId?: Prisma.StringNullableFilter<"Site"> | string | null
+  metaPixelId?: Prisma.StringNullableFilter<"Site"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   products?: Prisma.ProductListRelationFilter
   news?: Prisma.NewsPostListRelationFilter
   pages?: Prisma.SitePageListRelationFilter
+  messages?: Prisma.ContactMessageListRelationFilter
 }
 
 export type SiteOrderByWithRelationInput = {
@@ -293,10 +326,15 @@ export type SiteOrderByWithRelationInput = {
   published?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   menuConfig?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
+  ogImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  gaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaPixelId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   products?: Prisma.ProductOrderByRelationAggregateInput
   news?: Prisma.NewsPostOrderByRelationAggregateInput
   pages?: Prisma.SitePageOrderByRelationAggregateInput
+  messages?: Prisma.ContactMessageOrderByRelationAggregateInput
 }
 
 export type SiteWhereUniqueInput = Prisma.AtLeast<{
@@ -319,10 +357,15 @@ export type SiteWhereUniqueInput = Prisma.AtLeast<{
   published?: Prisma.BoolFilter<"Site"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Site"> | Date | string
   menuConfig?: Prisma.StringNullableFilter<"Site"> | string | null
+  seoDescription?: Prisma.StringNullableFilter<"Site"> | string | null
+  ogImageUrl?: Prisma.StringNullableFilter<"Site"> | string | null
+  gaId?: Prisma.StringNullableFilter<"Site"> | string | null
+  metaPixelId?: Prisma.StringNullableFilter<"Site"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   products?: Prisma.ProductListRelationFilter
   news?: Prisma.NewsPostListRelationFilter
   pages?: Prisma.SitePageListRelationFilter
+  messages?: Prisma.ContactMessageListRelationFilter
 }, "id" | "slug">
 
 export type SiteOrderByWithAggregationInput = {
@@ -342,6 +385,10 @@ export type SiteOrderByWithAggregationInput = {
   published?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   menuConfig?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
+  ogImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  gaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaPixelId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SiteCountOrderByAggregateInput
   _max?: Prisma.SiteMaxOrderByAggregateInput
   _min?: Prisma.SiteMinOrderByAggregateInput
@@ -367,6 +414,10 @@ export type SiteScalarWhereWithAggregatesInput = {
   published?: Prisma.BoolWithAggregatesFilter<"Site"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Site"> | Date | string
   menuConfig?: Prisma.StringNullableWithAggregatesFilter<"Site"> | string | null
+  seoDescription?: Prisma.StringNullableWithAggregatesFilter<"Site"> | string | null
+  ogImageUrl?: Prisma.StringNullableWithAggregatesFilter<"Site"> | string | null
+  gaId?: Prisma.StringNullableWithAggregatesFilter<"Site"> | string | null
+  metaPixelId?: Prisma.StringNullableWithAggregatesFilter<"Site"> | string | null
 }
 
 export type SiteCreateInput = {
@@ -385,10 +436,15 @@ export type SiteCreateInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   user: Prisma.UserCreateNestedOneWithoutSitesInput
   products?: Prisma.ProductCreateNestedManyWithoutSiteInput
   news?: Prisma.NewsPostCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageCreateNestedManyWithoutSiteInput
 }
 
 export type SiteUncheckedCreateInput = {
@@ -408,9 +464,14 @@ export type SiteUncheckedCreateInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutSiteInput
   news?: Prisma.NewsPostUncheckedCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageUncheckedCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageUncheckedCreateNestedManyWithoutSiteInput
 }
 
 export type SiteUpdateInput = {
@@ -429,10 +490,15 @@ export type SiteUpdateInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutSitesNestedInput
   products?: Prisma.ProductUpdateManyWithoutSiteNestedInput
   news?: Prisma.NewsPostUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteUncheckedUpdateInput = {
@@ -452,9 +518,14 @@ export type SiteUncheckedUpdateInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   products?: Prisma.ProductUncheckedUpdateManyWithoutSiteNestedInput
   news?: Prisma.NewsPostUncheckedUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUncheckedUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUncheckedUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteCreateManyInput = {
@@ -474,6 +545,10 @@ export type SiteCreateManyInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
 }
 
 export type SiteUpdateManyMutationInput = {
@@ -492,6 +567,10 @@ export type SiteUpdateManyMutationInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SiteUncheckedUpdateManyInput = {
@@ -511,6 +590,10 @@ export type SiteUncheckedUpdateManyInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SiteListRelationFilter = {
@@ -540,6 +623,10 @@ export type SiteCountOrderByAggregateInput = {
   published?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   menuConfig?: Prisma.SortOrder
+  seoDescription?: Prisma.SortOrder
+  ogImageUrl?: Prisma.SortOrder
+  gaId?: Prisma.SortOrder
+  metaPixelId?: Prisma.SortOrder
 }
 
 export type SiteMaxOrderByAggregateInput = {
@@ -559,6 +646,10 @@ export type SiteMaxOrderByAggregateInput = {
   published?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   menuConfig?: Prisma.SortOrder
+  seoDescription?: Prisma.SortOrder
+  ogImageUrl?: Prisma.SortOrder
+  gaId?: Prisma.SortOrder
+  metaPixelId?: Prisma.SortOrder
 }
 
 export type SiteMinOrderByAggregateInput = {
@@ -578,6 +669,10 @@ export type SiteMinOrderByAggregateInput = {
   published?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   menuConfig?: Prisma.SortOrder
+  seoDescription?: Prisma.SortOrder
+  ogImageUrl?: Prisma.SortOrder
+  gaId?: Prisma.SortOrder
+  metaPixelId?: Prisma.SortOrder
 }
 
 export type SiteScalarRelationFilter = {
@@ -663,6 +758,20 @@ export type SiteUpdateOneRequiredWithoutPagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SiteUpdateToOneWithWhereWithoutPagesInput, Prisma.SiteUpdateWithoutPagesInput>, Prisma.SiteUncheckedUpdateWithoutPagesInput>
 }
 
+export type SiteCreateNestedOneWithoutMessagesInput = {
+  create?: Prisma.XOR<Prisma.SiteCreateWithoutMessagesInput, Prisma.SiteUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.SiteCreateOrConnectWithoutMessagesInput
+  connect?: Prisma.SiteWhereUniqueInput
+}
+
+export type SiteUpdateOneRequiredWithoutMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.SiteCreateWithoutMessagesInput, Prisma.SiteUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.SiteCreateOrConnectWithoutMessagesInput
+  upsert?: Prisma.SiteUpsertWithoutMessagesInput
+  connect?: Prisma.SiteWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SiteUpdateToOneWithWhereWithoutMessagesInput, Prisma.SiteUpdateWithoutMessagesInput>, Prisma.SiteUncheckedUpdateWithoutMessagesInput>
+}
+
 export type SiteCreateNestedOneWithoutNewsInput = {
   create?: Prisma.XOR<Prisma.SiteCreateWithoutNewsInput, Prisma.SiteUncheckedCreateWithoutNewsInput>
   connectOrCreate?: Prisma.SiteCreateOrConnectWithoutNewsInput
@@ -693,9 +802,14 @@ export type SiteCreateWithoutUserInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   products?: Prisma.ProductCreateNestedManyWithoutSiteInput
   news?: Prisma.NewsPostCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageCreateNestedManyWithoutSiteInput
 }
 
 export type SiteUncheckedCreateWithoutUserInput = {
@@ -714,9 +828,14 @@ export type SiteUncheckedCreateWithoutUserInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutSiteInput
   news?: Prisma.NewsPostUncheckedCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageUncheckedCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageUncheckedCreateNestedManyWithoutSiteInput
 }
 
 export type SiteCreateOrConnectWithoutUserInput = {
@@ -764,6 +883,10 @@ export type SiteScalarWhereInput = {
   published?: Prisma.BoolFilter<"Site"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Site"> | Date | string
   menuConfig?: Prisma.StringNullableFilter<"Site"> | string | null
+  seoDescription?: Prisma.StringNullableFilter<"Site"> | string | null
+  ogImageUrl?: Prisma.StringNullableFilter<"Site"> | string | null
+  gaId?: Prisma.StringNullableFilter<"Site"> | string | null
+  metaPixelId?: Prisma.StringNullableFilter<"Site"> | string | null
 }
 
 export type SiteCreateWithoutProductsInput = {
@@ -782,9 +905,14 @@ export type SiteCreateWithoutProductsInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   user: Prisma.UserCreateNestedOneWithoutSitesInput
   news?: Prisma.NewsPostCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageCreateNestedManyWithoutSiteInput
 }
 
 export type SiteUncheckedCreateWithoutProductsInput = {
@@ -804,8 +932,13 @@ export type SiteUncheckedCreateWithoutProductsInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   news?: Prisma.NewsPostUncheckedCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageUncheckedCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageUncheckedCreateNestedManyWithoutSiteInput
 }
 
 export type SiteCreateOrConnectWithoutProductsInput = {
@@ -840,9 +973,14 @@ export type SiteUpdateWithoutProductsInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutSitesNestedInput
   news?: Prisma.NewsPostUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteUncheckedUpdateWithoutProductsInput = {
@@ -862,8 +1000,13 @@ export type SiteUncheckedUpdateWithoutProductsInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   news?: Prisma.NewsPostUncheckedUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUncheckedUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUncheckedUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteCreateWithoutPagesInput = {
@@ -882,9 +1025,14 @@ export type SiteCreateWithoutPagesInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   user: Prisma.UserCreateNestedOneWithoutSitesInput
   products?: Prisma.ProductCreateNestedManyWithoutSiteInput
   news?: Prisma.NewsPostCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageCreateNestedManyWithoutSiteInput
 }
 
 export type SiteUncheckedCreateWithoutPagesInput = {
@@ -904,8 +1052,13 @@ export type SiteUncheckedCreateWithoutPagesInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutSiteInput
   news?: Prisma.NewsPostUncheckedCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageUncheckedCreateNestedManyWithoutSiteInput
 }
 
 export type SiteCreateOrConnectWithoutPagesInput = {
@@ -940,9 +1093,14 @@ export type SiteUpdateWithoutPagesInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutSitesNestedInput
   products?: Prisma.ProductUpdateManyWithoutSiteNestedInput
   news?: Prisma.NewsPostUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteUncheckedUpdateWithoutPagesInput = {
@@ -962,8 +1120,133 @@ export type SiteUncheckedUpdateWithoutPagesInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   products?: Prisma.ProductUncheckedUpdateManyWithoutSiteNestedInput
   news?: Prisma.NewsPostUncheckedUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUncheckedUpdateManyWithoutSiteNestedInput
+}
+
+export type SiteCreateWithoutMessagesInput = {
+  id?: string
+  slug: string
+  name: string
+  logoUrl?: string | null
+  tagline?: string | null
+  intro?: string | null
+  themeKey?: string
+  themeConfig?: string | null
+  contactEmail?: string | null
+  contactPhone?: string | null
+  address?: string | null
+  socials?: string | null
+  published?: boolean
+  createdAt?: Date | string
+  menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
+  user: Prisma.UserCreateNestedOneWithoutSitesInput
+  products?: Prisma.ProductCreateNestedManyWithoutSiteInput
+  news?: Prisma.NewsPostCreateNestedManyWithoutSiteInput
+  pages?: Prisma.SitePageCreateNestedManyWithoutSiteInput
+}
+
+export type SiteUncheckedCreateWithoutMessagesInput = {
+  id?: string
+  userId: string
+  slug: string
+  name: string
+  logoUrl?: string | null
+  tagline?: string | null
+  intro?: string | null
+  themeKey?: string
+  themeConfig?: string | null
+  contactEmail?: string | null
+  contactPhone?: string | null
+  address?: string | null
+  socials?: string | null
+  published?: boolean
+  createdAt?: Date | string
+  menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutSiteInput
+  news?: Prisma.NewsPostUncheckedCreateNestedManyWithoutSiteInput
+  pages?: Prisma.SitePageUncheckedCreateNestedManyWithoutSiteInput
+}
+
+export type SiteCreateOrConnectWithoutMessagesInput = {
+  where: Prisma.SiteWhereUniqueInput
+  create: Prisma.XOR<Prisma.SiteCreateWithoutMessagesInput, Prisma.SiteUncheckedCreateWithoutMessagesInput>
+}
+
+export type SiteUpsertWithoutMessagesInput = {
+  update: Prisma.XOR<Prisma.SiteUpdateWithoutMessagesInput, Prisma.SiteUncheckedUpdateWithoutMessagesInput>
+  create: Prisma.XOR<Prisma.SiteCreateWithoutMessagesInput, Prisma.SiteUncheckedCreateWithoutMessagesInput>
+  where?: Prisma.SiteWhereInput
+}
+
+export type SiteUpdateToOneWithWhereWithoutMessagesInput = {
+  where?: Prisma.SiteWhereInput
+  data: Prisma.XOR<Prisma.SiteUpdateWithoutMessagesInput, Prisma.SiteUncheckedUpdateWithoutMessagesInput>
+}
+
+export type SiteUpdateWithoutMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  themeKey?: Prisma.StringFieldUpdateOperationsInput | string
+  themeConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  socials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutSitesNestedInput
+  products?: Prisma.ProductUpdateManyWithoutSiteNestedInput
+  news?: Prisma.NewsPostUpdateManyWithoutSiteNestedInput
+  pages?: Prisma.SitePageUpdateManyWithoutSiteNestedInput
+}
+
+export type SiteUncheckedUpdateWithoutMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  themeKey?: Prisma.StringFieldUpdateOperationsInput | string
+  themeConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  socials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  products?: Prisma.ProductUncheckedUpdateManyWithoutSiteNestedInput
+  news?: Prisma.NewsPostUncheckedUpdateManyWithoutSiteNestedInput
+  pages?: Prisma.SitePageUncheckedUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteCreateWithoutNewsInput = {
@@ -982,9 +1265,14 @@ export type SiteCreateWithoutNewsInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   user: Prisma.UserCreateNestedOneWithoutSitesInput
   products?: Prisma.ProductCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageCreateNestedManyWithoutSiteInput
 }
 
 export type SiteUncheckedCreateWithoutNewsInput = {
@@ -1004,8 +1292,13 @@ export type SiteUncheckedCreateWithoutNewsInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutSiteInput
   pages?: Prisma.SitePageUncheckedCreateNestedManyWithoutSiteInput
+  messages?: Prisma.ContactMessageUncheckedCreateNestedManyWithoutSiteInput
 }
 
 export type SiteCreateOrConnectWithoutNewsInput = {
@@ -1040,9 +1333,14 @@ export type SiteUpdateWithoutNewsInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutSitesNestedInput
   products?: Prisma.ProductUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteUncheckedUpdateWithoutNewsInput = {
@@ -1062,8 +1360,13 @@ export type SiteUncheckedUpdateWithoutNewsInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   products?: Prisma.ProductUncheckedUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUncheckedUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUncheckedUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteCreateManyUserInput = {
@@ -1082,6 +1385,10 @@ export type SiteCreateManyUserInput = {
   published?: boolean
   createdAt?: Date | string
   menuConfig?: string | null
+  seoDescription?: string | null
+  ogImageUrl?: string | null
+  gaId?: string | null
+  metaPixelId?: string | null
 }
 
 export type SiteUpdateWithoutUserInput = {
@@ -1100,9 +1407,14 @@ export type SiteUpdateWithoutUserInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   products?: Prisma.ProductUpdateManyWithoutSiteNestedInput
   news?: Prisma.NewsPostUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteUncheckedUpdateWithoutUserInput = {
@@ -1121,9 +1433,14 @@ export type SiteUncheckedUpdateWithoutUserInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   products?: Prisma.ProductUncheckedUpdateManyWithoutSiteNestedInput
   news?: Prisma.NewsPostUncheckedUpdateManyWithoutSiteNestedInput
   pages?: Prisma.SitePageUncheckedUpdateManyWithoutSiteNestedInput
+  messages?: Prisma.ContactMessageUncheckedUpdateManyWithoutSiteNestedInput
 }
 
 export type SiteUncheckedUpdateManyWithoutUserInput = {
@@ -1142,6 +1459,10 @@ export type SiteUncheckedUpdateManyWithoutUserInput = {
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   menuConfig?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ogImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaPixelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1153,12 +1474,14 @@ export type SiteCountOutputType = {
   products: number
   news: number
   pages: number
+  messages: number
 }
 
 export type SiteCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   products?: boolean | SiteCountOutputTypeCountProductsArgs
   news?: boolean | SiteCountOutputTypeCountNewsArgs
   pages?: boolean | SiteCountOutputTypeCountPagesArgs
+  messages?: boolean | SiteCountOutputTypeCountMessagesArgs
 }
 
 /**
@@ -1192,6 +1515,13 @@ export type SiteCountOutputTypeCountPagesArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.SitePageWhereInput
 }
 
+/**
+ * SiteCountOutputType without action
+ */
+export type SiteCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContactMessageWhereInput
+}
+
 
 export type SiteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1210,10 +1540,15 @@ export type SiteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   published?: boolean
   createdAt?: boolean
   menuConfig?: boolean
+  seoDescription?: boolean
+  ogImageUrl?: boolean
+  gaId?: boolean
+  metaPixelId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   products?: boolean | Prisma.Site$productsArgs<ExtArgs>
   news?: boolean | Prisma.Site$newsArgs<ExtArgs>
   pages?: boolean | Prisma.Site$pagesArgs<ExtArgs>
+  messages?: boolean | Prisma.Site$messagesArgs<ExtArgs>
   _count?: boolean | Prisma.SiteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["site"]>
 
@@ -1234,6 +1569,10 @@ export type SiteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   published?: boolean
   createdAt?: boolean
   menuConfig?: boolean
+  seoDescription?: boolean
+  ogImageUrl?: boolean
+  gaId?: boolean
+  metaPixelId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["site"]>
 
@@ -1254,6 +1593,10 @@ export type SiteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   published?: boolean
   createdAt?: boolean
   menuConfig?: boolean
+  seoDescription?: boolean
+  ogImageUrl?: boolean
+  gaId?: boolean
+  metaPixelId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["site"]>
 
@@ -1274,14 +1617,19 @@ export type SiteSelectScalar = {
   published?: boolean
   createdAt?: boolean
   menuConfig?: boolean
+  seoDescription?: boolean
+  ogImageUrl?: boolean
+  gaId?: boolean
+  metaPixelId?: boolean
 }
 
-export type SiteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "slug" | "name" | "logoUrl" | "tagline" | "intro" | "themeKey" | "themeConfig" | "contactEmail" | "contactPhone" | "address" | "socials" | "published" | "createdAt" | "menuConfig", ExtArgs["result"]["site"]>
+export type SiteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "slug" | "name" | "logoUrl" | "tagline" | "intro" | "themeKey" | "themeConfig" | "contactEmail" | "contactPhone" | "address" | "socials" | "published" | "createdAt" | "menuConfig" | "seoDescription" | "ogImageUrl" | "gaId" | "metaPixelId", ExtArgs["result"]["site"]>
 export type SiteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   products?: boolean | Prisma.Site$productsArgs<ExtArgs>
   news?: boolean | Prisma.Site$newsArgs<ExtArgs>
   pages?: boolean | Prisma.Site$pagesArgs<ExtArgs>
+  messages?: boolean | Prisma.Site$messagesArgs<ExtArgs>
   _count?: boolean | Prisma.SiteCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SiteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1298,6 +1646,7 @@ export type $SitePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     products: Prisma.$ProductPayload<ExtArgs>[]
     news: Prisma.$NewsPostPayload<ExtArgs>[]
     pages: Prisma.$SitePagePayload<ExtArgs>[]
+    messages: Prisma.$ContactMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1316,6 +1665,10 @@ export type $SitePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     published: boolean
     createdAt: Date
     menuConfig: string | null
+    seoDescription: string | null
+    ogImageUrl: string | null
+    gaId: string | null
+    metaPixelId: string | null
   }, ExtArgs["result"]["site"]>
   composites: {}
 }
@@ -1714,6 +2067,7 @@ export interface Prisma__SiteClient<T, Null = never, ExtArgs extends runtime.Typ
   products<T extends Prisma.Site$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Site$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   news<T extends Prisma.Site$newsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Site$newsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NewsPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pages<T extends Prisma.Site$pagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Site$pagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SitePagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  messages<T extends Prisma.Site$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Site$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1759,6 +2113,10 @@ export interface SiteFieldRefs {
   readonly published: Prisma.FieldRef<"Site", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Site", 'DateTime'>
   readonly menuConfig: Prisma.FieldRef<"Site", 'String'>
+  readonly seoDescription: Prisma.FieldRef<"Site", 'String'>
+  readonly ogImageUrl: Prisma.FieldRef<"Site", 'String'>
+  readonly gaId: Prisma.FieldRef<"Site", 'String'>
+  readonly metaPixelId: Prisma.FieldRef<"Site", 'String'>
 }
     
 
@@ -2227,6 +2585,30 @@ export type Site$pagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.SitePageScalarFieldEnum | Prisma.SitePageScalarFieldEnum[]
+}
+
+/**
+ * Site.messages
+ */
+export type Site$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContactMessage
+   */
+  select?: Prisma.ContactMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContactMessage
+   */
+  omit?: Prisma.ContactMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactMessageInclude<ExtArgs> | null
+  where?: Prisma.ContactMessageWhereInput
+  orderBy?: Prisma.ContactMessageOrderByWithRelationInput | Prisma.ContactMessageOrderByWithRelationInput[]
+  cursor?: Prisma.ContactMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContactMessageScalarFieldEnum | Prisma.ContactMessageScalarFieldEnum[]
 }
 
 /**

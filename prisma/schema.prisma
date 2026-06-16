@@ -37,12 +37,17 @@ model Site {
   published      Boolean  @default(true)
   createdAt     DateTime @default(now())
 
-  menuConfig    String?
+  menuConfig     String?
+  seoDescription String?
+  ogImageUrl     String?
+  gaId           String?
+  metaPixelId    String?
 
   user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  products Product[]
-  news     NewsPost[]
-  pages    SitePage[]
+  products  Product[]
+  news      NewsPost[]
+  pages     SitePage[]
+  messages  ContactMessage[]
 
   @@index([userId])
 }
@@ -55,6 +60,7 @@ model Product {
   description String?
   price       Float?
   imageUrl    String?
+  images      String?
   category    String?
   sortOrder   Int      @default(0)
   published   Boolean  @default(true)
@@ -71,15 +77,31 @@ model SitePage {
   siteId    String
   title     String
   slug      String
-  body      String?
-  imageUrl  String?
-  sortOrder Int      @default(0)
+  body           String?
+  imageUrl       String?
+  seoDescription String?
+  sortOrder      Int      @default(0)
   published Boolean  @default(true)
   createdAt DateTime @default(now())
 
   site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
 
   @@unique([siteId, slug])
+  @@index([siteId])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  siteId    String
+  name      String
+  email     String
+  phone     String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
   @@index([siteId])
 }
 

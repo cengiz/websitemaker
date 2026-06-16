@@ -55,6 +55,7 @@ export const ModelName = {
   Site: 'Site',
   Product: 'Product',
   SitePage: 'SitePage',
+  ContactMessage: 'ContactMessage',
   NewsPost: 'NewsPost'
 } as const
 
@@ -98,7 +99,11 @@ export const SiteScalarFieldEnum = {
   socials: 'socials',
   published: 'published',
   createdAt: 'createdAt',
-  menuConfig: 'menuConfig'
+  menuConfig: 'menuConfig',
+  seoDescription: 'seoDescription',
+  ogImageUrl: 'ogImageUrl',
+  gaId: 'gaId',
+  metaPixelId: 'metaPixelId'
 } as const
 
 export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
@@ -112,6 +117,7 @@ export const ProductScalarFieldEnum = {
   description: 'description',
   price: 'price',
   imageUrl: 'imageUrl',
+  images: 'images',
   category: 'category',
   sortOrder: 'sortOrder',
   published: 'published',
@@ -128,12 +134,27 @@ export const SitePageScalarFieldEnum = {
   slug: 'slug',
   body: 'body',
   imageUrl: 'imageUrl',
+  seoDescription: 'seoDescription',
   sortOrder: 'sortOrder',
   published: 'published',
   createdAt: 'createdAt'
 } as const
 
 export type SitePageScalarFieldEnum = (typeof SitePageScalarFieldEnum)[keyof typeof SitePageScalarFieldEnum]
+
+
+export const ContactMessageScalarFieldEnum = {
+  id: 'id',
+  siteId: 'siteId',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  message: 'message',
+  read: 'read',
+  createdAt: 'createdAt'
+} as const
+
+export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
 
 
 export const NewsPostScalarFieldEnum = {

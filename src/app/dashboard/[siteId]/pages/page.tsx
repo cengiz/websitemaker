@@ -2,6 +2,7 @@ import Link from "next/link";
 import { requireSiteOwner } from "@/lib/authz";
 import { prisma } from "@/lib/db";
 import { deletePage } from "./actions";
+import { SortablePageList } from "@/components/dashboard/SortablePageList";
 
 const SUCCESS_MESSAGES: Record<string, string> = {
   created: "Sayfa eklendi.",
@@ -25,6 +26,11 @@ export default async function PagesListPage({
     orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
   });
 
+  async function handleDelete(id: string) {
+    "use server";
+    await deletePage(site.id, id);
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -43,43 +49,11 @@ export default async function PagesListPage({
         </p>
       )}
 
-      {pages.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-zinc-500">
-          Henüz sayfa eklenmemiş.
-        </div>
-      ) : (
-        <div className="flex flex-col gap-2">
-          {pages.map((page) => (
-            <div key={page.id} className="flex items-center gap-4 rounded-xl border border-zinc-200 bg-white p-4">
-              <div className="flex-1">
-                <p className="font-medium text-zinc-900">{page.title}</p>
-                <p className="text-sm text-zinc-500">/sayfa/{page.slug}</p>
-              </div>
-              <span
-                className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                  page.published ? "bg-green-100 text-green-700" : "bg-zinc-100 text-zinc-500"
-                }`}
-              >
-                {page.published ? "Yayında" : "Taslak"}
-              </span>
-              <Link
-                href={`/dashboard/${site.id}/pages/${page.id}`}
-                className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm font-medium hover:bg-zinc-50"
-              >
-                Düzenle
-              </Link>
-              <form action={deletePage.bind(null, site.id, page.id)}>
-                <button
-                  type="submit"
-                  className="rounded-md border border-red-200 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50"
-                >
-                  Sil
-                </button>
-              </form>
-            </div>
-          ))}
-        </div>
-      )}
+      <SortablePageList
+        siteId={site.id}
+        initialPages={pages}
+        deleteAction={handleDelete}
+      />
     </div>
   );
 }

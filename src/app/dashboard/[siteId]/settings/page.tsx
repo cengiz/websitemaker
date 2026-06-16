@@ -80,6 +80,48 @@ export default async function SiteSettingsPage({
           </Field>
         </div>
 
+        <hr className="border-zinc-200" />
+        <p className="text-sm font-semibold text-zinc-700">SEO</p>
+
+        <Field label="Meta açıklama (seoDescription)">
+          <textarea
+            className="input min-h-20"
+            name="seoDescription"
+            defaultValue={site.seoDescription ?? ""}
+            placeholder="Arama motorlarında görünen kısa açıklama (~160 karakter)"
+          />
+        </Field>
+
+        <ImageUploadField
+          name="ogImageUrl"
+          siteId={site.id}
+          initialUrl={site.ogImageUrl}
+          label="Sosyal medya görseli (OG Image)"
+        />
+
+        <hr className="border-zinc-200" />
+        <p className="text-sm font-semibold text-zinc-700">Analitik</p>
+
+        <Field label="Google Analytics Ölçüm ID (G-XXXXXXXX)">
+          <input
+            className="input"
+            name="gaId"
+            defaultValue={site.gaId ?? ""}
+            placeholder="G-XXXXXXXXXX"
+          />
+        </Field>
+
+        <Field label="Meta Pixel ID">
+          <input
+            className="input"
+            name="metaPixelId"
+            defaultValue={site.metaPixelId ?? ""}
+            placeholder="123456789012345"
+          />
+        </Field>
+
+        <hr className="border-zinc-200" />
+
         <label className="flex items-center gap-2 text-sm font-medium text-zinc-700">
           <input type="checkbox" name="published" defaultChecked={site.published} />
           Site yayında

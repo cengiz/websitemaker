@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: "/news", label: "Haberler" },
   { href: "/pages", label: "Sayfalar" },
   { href: "/menu", label: "Menü" },
+  { href: "/messages", label: "Mesajlar" },
 ] as const;
 
 export default async function SiteDashboardLayout({

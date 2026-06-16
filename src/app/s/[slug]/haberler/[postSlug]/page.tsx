@@ -1,7 +1,34 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
 import { prisma } from "@/lib/db";
+
+const APP_URL = (process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; postSlug: string }>;
+}): Promise<Metadata> {
+  const { slug, postSlug } = await params;
+  const site = await getPublicSiteBySlug(slug);
+  if (!site) return {};
+  const post = await prisma.newsPost.findFirst({
+    where: { siteId: site.id, slug: postSlug, published: true },
+    select: { title: true, excerpt: true, coverImageUrl: true },
+  });
+  if (!post) return {};
+  const image = post.coverImageUrl
+    ? post.coverImageUrl.startsWith("http") ? post.coverImageUrl : `${APP_URL}${post.coverImageUrl}`
+    : undefined;
+  return {
+    title: post.title,
+    description: post.excerpt ?? undefined,
+    openGraph: { title: post.title, description: post.excerpt ?? undefined, images: image ? [{ url: image }] : undefined },
+    twitter: { card: "summary_large_image", images: image ? [image] : undefined },
+  };
+}
 
 export default async function SiteNewsDetailPage({
   params,
@@ -40,7 +67,10 @@ export default async function SiteNewsDetailPage({
         {(post.publishedAt ?? post.createdAt).toLocaleDateString("tr-TR")}
       </p>
       {post.body && (
-        <p className="mt-4 whitespace-pre-line text-[var(--site-fg)]">{post.body}</p>
+        <div
+          className="prose prose-sm mt-4 max-w-none text-[var(--site-fg)]"
+          dangerouslySetInnerHTML={{ __html: post.body }}
+        />
       )}
     </div>
   );

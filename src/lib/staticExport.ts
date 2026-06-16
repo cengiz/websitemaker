@@ -146,7 +146,10 @@ async function processHtml(html: string, ctx: ProcessCtx): Promise<string> {
     return `${p1}${APP_URL}${p2}${p3}`;
   });
 
-  // 5. Rewrite internal nav links (/s/<slug>...) to relative .html file links
+  // 5. Rewrite contact form action to absolute URL so native form submission works from static hosting
+  html = html.replace(/action="\/api\/contact\/([^"]+)"/g, `action="${APP_URL}/api/contact/$1"`);
+
+  // 6. Rewrite internal nav links (/s/<slug>...) to relative .html file links
   const base = `/s/${ctx.slug}`;
   const hrefRe = new RegExp(
     `href=(["'])${escapeRegExp(base)}(?:/(urunler|haberler|iletisim|sayfa))?(?:/([a-zA-Z0-9-]+))?\\1`,

@@ -1,5 +1,8 @@
+"use client";
+
 import { ImageUploadField } from "@/components/dashboard/ImageUploadField";
 import { SlugField } from "@/components/dashboard/SlugField";
+import { GalleryField } from "@/components/dashboard/GalleryField";
 import type { Product } from "@/generated/prisma/client";
 
 export function ProductForm({
@@ -22,7 +25,12 @@ export function ProductForm({
 
       <SlugField urlPrefix={`/s/${siteSlug}/urunler/`} initialValue={product?.slug ?? ""} />
 
-      <ImageUploadField name="imageUrl" siteId={siteId} initialUrl={product?.imageUrl} label="Görsel" />
+      <ImageUploadField name="imageUrl" siteId={siteId} initialUrl={product?.imageUrl} label="Ana görsel" />
+
+      <GalleryField
+        siteId={siteId}
+        initialImages={(() => { try { return product?.images ? JSON.parse(product.images) : []; } catch { return []; } })()}
+      />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1">

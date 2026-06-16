@@ -1,7 +1,34 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
 import { prisma } from "@/lib/db";
+
+const APP_URL = (process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; pageSlug: string }>;
+}): Promise<Metadata> {
+  const { slug, pageSlug } = await params;
+  const site = await getPublicSiteBySlug(slug);
+  if (!site) return {};
+  const page = await prisma.sitePage.findFirst({
+    where: { siteId: site.id, slug: pageSlug, published: true },
+    select: { title: true, seoDescription: true, imageUrl: true },
+  });
+  if (!page) return {};
+  const image = page.imageUrl
+    ? page.imageUrl.startsWith("http") ? page.imageUrl : `${APP_URL}${page.imageUrl}`
+    : undefined;
+  return {
+    title: page.title,
+    description: page.seoDescription ?? undefined,
+    openGraph: { title: page.title, description: page.seoDescription ?? undefined, images: image ? [{ url: image }] : undefined },
+    twitter: { card: "summary_large_image", images: image ? [image] : undefined },
+  };
+}
 
 export default async function SiteCustomPage({
   params,
@@ -38,7 +65,10 @@ export default async function SiteCustomPage({
       )}
 
       {page.body && (
-        <div className="mt-6 whitespace-pre-line text-[var(--site-fg)]">{page.body}</div>
+        <div
+          className="prose prose-sm mt-6 max-w-none text-[var(--site-fg)]"
+          dangerouslySetInnerHTML={{ __html: page.body }}
+        />
       )}
     </div>
   );

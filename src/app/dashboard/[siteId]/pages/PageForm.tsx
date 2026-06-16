@@ -2,6 +2,7 @@
 
 import { ImageUploadField } from "@/components/dashboard/ImageUploadField";
 import { SlugField } from "@/components/dashboard/SlugField";
+import { RichTextEditor } from "@/components/dashboard/RichTextEditor";
 import type { SitePage } from "@/generated/prisma/client";
 
 export function PageForm({
@@ -28,7 +29,16 @@ export function PageForm({
 
       <label className="flex flex-col gap-1">
         <span className="text-sm font-medium text-zinc-700">İçerik</span>
-        <textarea className="input min-h-60" name="body" defaultValue={page?.body ?? ""} />
+        <RichTextEditor name="body" initialValue={page?.body ?? ""} /></label>
+
+      <label className="flex flex-col gap-1">
+        <span className="text-sm font-medium text-zinc-700">SEO açıklaması</span>
+        <textarea
+          className="input min-h-20"
+          name="seoDescription"
+          defaultValue={page?.seoDescription ?? ""}
+          placeholder="Arama motorlarında görünen kısa açıklama (~160 karakter)"
+        />
       </label>
 
       <label className="flex items-center gap-2 text-sm font-medium text-zinc-700">

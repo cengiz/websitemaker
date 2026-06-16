@@ -13,6 +13,7 @@ const schema = z.object({
   description: z.string().optional().default(""),
   price: z.string().optional().default(""),
   imageUrl: z.string().optional().default(""),
+  images: z.string().optional().default("[]"),
   category: z.string().optional().default(""),
   published: z.string().optional(),
 });
@@ -36,6 +37,9 @@ export async function createProduct(siteId: string, formData: FormData) {
   const slugBase = parsed.data.slug.trim() || parsed.data.title;
   const slug = await uniqueProductSlug(site.id, slugBase);
 
+  let images: string[] = [];
+  try { images = JSON.parse(parsed.data.images); } catch { images = []; }
+
   await prisma.product.create({
     data: {
       siteId: site.id,
@@ -44,6 +48,7 @@ export async function createProduct(siteId: string, formData: FormData) {
       description: parsed.data.description || null,
       price: parsePrice(parsed.data.price),
       imageUrl: parsed.data.imageUrl || null,
+      images: images.length ? JSON.stringify(images) : null,
       category: parsed.data.category || null,
       published: parsed.data.published === "on",
     },
@@ -72,6 +77,9 @@ export async function updateProduct(siteId: string, productId: string, formData:
   const slugBase = parsed.data.slug.trim() || parsed.data.title;
   const slug = await uniqueProductSlug(site.id, slugBase, product.id);
 
+  let images: string[] = [];
+  try { images = JSON.parse(parsed.data.images); } catch { images = []; }
+
   await prisma.product.update({
     where: { id: product.id },
     data: {
@@ -80,6 +88,7 @@ export async function updateProduct(siteId: string, productId: string, formData:
       description: parsed.data.description || null,
       price: parsePrice(parsed.data.price),
       imageUrl: parsed.data.imageUrl || null,
+      images: images.length ? JSON.stringify(images) : null,
       category: parsed.data.category || null,
       published: parsed.data.published === "on",
     },
@@ -92,6 +101,17 @@ export async function updateProduct(siteId: string, productId: string, formData:
   if (slug !== product.slug) revalidatePath(`/s/${site.slug}/urunler/${slug}`);
 
   redirect(`${listUrl}?success=updated`);
+}
+
+export async function updateProductOrder(siteId: string, orderedIds: string[]) {
+  const { site } = await requireSiteOwner(siteId);
+  await Promise.all(
+    orderedIds.map((id, idx) =>
+      prisma.product.updateMany({ where: { id, siteId: site.id }, data: { sortOrder: idx } })
+    )
+  );
+  revalidatePath(`/dashboard/${site.id}/products`);
+  revalidatePath(`/s/${site.slug}/urunler`);
 }
 
 export async function deleteProduct(siteId: string, productId: string) {
