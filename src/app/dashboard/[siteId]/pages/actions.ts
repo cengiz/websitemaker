@@ -38,6 +38,7 @@ const schema = z.object({
   slug: z.string().optional().default(""),
   body: z.string().optional().default(""),
   imageUrl: z.string().optional().default(""),
+  images: z.string().optional().default("[]"),
   seoDescription: z.string().optional().default(""),
   published: z.string().optional(),
 });
@@ -61,6 +62,7 @@ export async function createPage(siteId: string, formData: FormData) {
       slug,
       body: body || null,
       imageUrl: parsed.data.imageUrl || null,
+      images: parsed.data.images !== "[]" ? parsed.data.images : null,
       seoDescription: parsed.data.seoDescription || null,
       published,
     },
@@ -113,6 +115,7 @@ export async function updatePage(siteId: string, pageId: string, formData: FormD
       slug,
       body: body || null,
       imageUrl: parsed.data.imageUrl || null,
+      images: parsed.data.images !== "[]" ? parsed.data.images : null,
       seoDescription: parsed.data.seoDescription || null,
       published,
     },

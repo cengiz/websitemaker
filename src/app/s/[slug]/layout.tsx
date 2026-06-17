@@ -62,9 +62,8 @@ export default async function SiteLayout({
       style={{ ...themeVarsToStyle(vars), fontFamily: vars["--site-font"] }}
       className="flex min-h-screen flex-col bg-[var(--site-bg)] text-[var(--site-fg)]"
     >
-      {fontUrl && (
-        <link rel="stylesheet" href={fontUrl} />
-      )}
+      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+      {fontUrl && <style dangerouslySetInnerHTML={{ __html: `@import url('${fontUrl}');` }} />}
       {site.gaId && (
         <>
           <Script

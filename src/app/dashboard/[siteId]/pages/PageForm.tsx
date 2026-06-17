@@ -1,6 +1,7 @@
 "use client";
 
 import { ImageUploadField } from "@/components/dashboard/ImageUploadField";
+import { GalleryField } from "@/components/dashboard/GalleryField";
 import { SlugField } from "@/components/dashboard/SlugField";
 import { RichTextEditor } from "@/components/dashboard/RichTextEditor";
 import type { SitePage } from "@/generated/prisma/client";
@@ -25,7 +26,12 @@ export function PageForm({
 
       <SlugField urlPrefix={`/s/${siteSlug}/sayfa/`} initialValue={page?.slug ?? ""} />
 
-      <ImageUploadField name="imageUrl" siteId={siteId} initialUrl={page?.imageUrl} label="Görsel" />
+      <ImageUploadField name="imageUrl" siteId={siteId} initialUrl={page?.imageUrl} label="Ana görsel" />
+
+      <GalleryField
+        siteId={siteId}
+        initialImages={page?.images ? JSON.parse(page.images) : []}
+      />
 
       <label className="flex flex-col gap-1">
         <span className="text-sm font-medium text-zinc-700">İçerik</span>

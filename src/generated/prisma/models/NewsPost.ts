@@ -32,6 +32,7 @@ export type NewsPostMinAggregateOutputType = {
   excerpt: string | null
   body: string | null
   coverImageUrl: string | null
+  images: string | null
   published: boolean | null
   publishedAt: Date | null
   createdAt: Date | null
@@ -45,6 +46,7 @@ export type NewsPostMaxAggregateOutputType = {
   excerpt: string | null
   body: string | null
   coverImageUrl: string | null
+  images: string | null
   published: boolean | null
   publishedAt: Date | null
   createdAt: Date | null
@@ -58,6 +60,7 @@ export type NewsPostCountAggregateOutputType = {
   excerpt: number
   body: number
   coverImageUrl: number
+  images: number
   published: number
   publishedAt: number
   createdAt: number
@@ -73,6 +76,7 @@ export type NewsPostMinAggregateInputType = {
   excerpt?: true
   body?: true
   coverImageUrl?: true
+  images?: true
   published?: true
   publishedAt?: true
   createdAt?: true
@@ -86,6 +90,7 @@ export type NewsPostMaxAggregateInputType = {
   excerpt?: true
   body?: true
   coverImageUrl?: true
+  images?: true
   published?: true
   publishedAt?: true
   createdAt?: true
@@ -99,6 +104,7 @@ export type NewsPostCountAggregateInputType = {
   excerpt?: true
   body?: true
   coverImageUrl?: true
+  images?: true
   published?: true
   publishedAt?: true
   createdAt?: true
@@ -185,6 +191,7 @@ export type NewsPostGroupByOutputType = {
   excerpt: string | null
   body: string | null
   coverImageUrl: string | null
+  images: string | null
   published: boolean
   publishedAt: Date | null
   createdAt: Date
@@ -219,6 +226,7 @@ export type NewsPostWhereInput = {
   excerpt?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   body?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   coverImageUrl?: Prisma.StringNullableFilter<"NewsPost"> | string | null
+  images?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   published?: Prisma.BoolFilter<"NewsPost"> | boolean
   publishedAt?: Prisma.DateTimeNullableFilter<"NewsPost"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NewsPost"> | Date | string
@@ -233,6 +241,7 @@ export type NewsPostOrderByWithRelationInput = {
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
   body?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  images?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -251,6 +260,7 @@ export type NewsPostWhereUniqueInput = Prisma.AtLeast<{
   excerpt?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   body?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   coverImageUrl?: Prisma.StringNullableFilter<"NewsPost"> | string | null
+  images?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   published?: Prisma.BoolFilter<"NewsPost"> | boolean
   publishedAt?: Prisma.DateTimeNullableFilter<"NewsPost"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NewsPost"> | Date | string
@@ -265,6 +275,7 @@ export type NewsPostOrderByWithAggregationInput = {
   excerpt?: Prisma.SortOrderInput | Prisma.SortOrder
   body?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  images?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -284,6 +295,7 @@ export type NewsPostScalarWhereWithAggregatesInput = {
   excerpt?: Prisma.StringNullableWithAggregatesFilter<"NewsPost"> | string | null
   body?: Prisma.StringNullableWithAggregatesFilter<"NewsPost"> | string | null
   coverImageUrl?: Prisma.StringNullableWithAggregatesFilter<"NewsPost"> | string | null
+  images?: Prisma.StringNullableWithAggregatesFilter<"NewsPost"> | string | null
   published?: Prisma.BoolWithAggregatesFilter<"NewsPost"> | boolean
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NewsPost"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"NewsPost"> | Date | string
@@ -296,6 +308,7 @@ export type NewsPostCreateInput = {
   excerpt?: string | null
   body?: string | null
   coverImageUrl?: string | null
+  images?: string | null
   published?: boolean
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -310,6 +323,7 @@ export type NewsPostUncheckedCreateInput = {
   excerpt?: string | null
   body?: string | null
   coverImageUrl?: string | null
+  images?: string | null
   published?: boolean
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -322,6 +336,7 @@ export type NewsPostUpdateInput = {
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -336,6 +351,7 @@ export type NewsPostUncheckedUpdateInput = {
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -349,6 +365,7 @@ export type NewsPostCreateManyInput = {
   excerpt?: string | null
   body?: string | null
   coverImageUrl?: string | null
+  images?: string | null
   published?: boolean
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -361,6 +378,7 @@ export type NewsPostUpdateManyMutationInput = {
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -374,6 +392,7 @@ export type NewsPostUncheckedUpdateManyInput = {
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -402,6 +421,7 @@ export type NewsPostCountOrderByAggregateInput = {
   excerpt?: Prisma.SortOrder
   body?: Prisma.SortOrder
   coverImageUrl?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   published?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -415,6 +435,7 @@ export type NewsPostMaxOrderByAggregateInput = {
   excerpt?: Prisma.SortOrder
   body?: Prisma.SortOrder
   coverImageUrl?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   published?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -428,6 +449,7 @@ export type NewsPostMinOrderByAggregateInput = {
   excerpt?: Prisma.SortOrder
   body?: Prisma.SortOrder
   coverImageUrl?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   published?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -486,6 +508,7 @@ export type NewsPostCreateWithoutSiteInput = {
   excerpt?: string | null
   body?: string | null
   coverImageUrl?: string | null
+  images?: string | null
   published?: boolean
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -498,6 +521,7 @@ export type NewsPostUncheckedCreateWithoutSiteInput = {
   excerpt?: string | null
   body?: string | null
   coverImageUrl?: string | null
+  images?: string | null
   published?: boolean
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -539,6 +563,7 @@ export type NewsPostScalarWhereInput = {
   excerpt?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   body?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   coverImageUrl?: Prisma.StringNullableFilter<"NewsPost"> | string | null
+  images?: Prisma.StringNullableFilter<"NewsPost"> | string | null
   published?: Prisma.BoolFilter<"NewsPost"> | boolean
   publishedAt?: Prisma.DateTimeNullableFilter<"NewsPost"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NewsPost"> | Date | string
@@ -551,6 +576,7 @@ export type NewsPostCreateManySiteInput = {
   excerpt?: string | null
   body?: string | null
   coverImageUrl?: string | null
+  images?: string | null
   published?: boolean
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -563,6 +589,7 @@ export type NewsPostUpdateWithoutSiteInput = {
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -575,6 +602,7 @@ export type NewsPostUncheckedUpdateWithoutSiteInput = {
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -587,6 +615,7 @@ export type NewsPostUncheckedUpdateManyWithoutSiteInput = {
   excerpt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -602,6 +631,7 @@ export type NewsPostSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   excerpt?: boolean
   body?: boolean
   coverImageUrl?: boolean
+  images?: boolean
   published?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -616,6 +646,7 @@ export type NewsPostSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   excerpt?: boolean
   body?: boolean
   coverImageUrl?: boolean
+  images?: boolean
   published?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -630,6 +661,7 @@ export type NewsPostSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   excerpt?: boolean
   body?: boolean
   coverImageUrl?: boolean
+  images?: boolean
   published?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -644,12 +676,13 @@ export type NewsPostSelectScalar = {
   excerpt?: boolean
   body?: boolean
   coverImageUrl?: boolean
+  images?: boolean
   published?: boolean
   publishedAt?: boolean
   createdAt?: boolean
 }
 
-export type NewsPostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteId" | "title" | "slug" | "excerpt" | "body" | "coverImageUrl" | "published" | "publishedAt" | "createdAt", ExtArgs["result"]["newsPost"]>
+export type NewsPostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteId" | "title" | "slug" | "excerpt" | "body" | "coverImageUrl" | "images" | "published" | "publishedAt" | "createdAt", ExtArgs["result"]["newsPost"]>
 export type NewsPostInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   site?: boolean | Prisma.SiteDefaultArgs<ExtArgs>
 }
@@ -673,6 +706,7 @@ export type $NewsPostPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     excerpt: string | null
     body: string | null
     coverImageUrl: string | null
+    images: string | null
     published: boolean
     publishedAt: Date | null
     createdAt: Date
@@ -1107,6 +1141,7 @@ export interface NewsPostFieldRefs {
   readonly excerpt: Prisma.FieldRef<"NewsPost", 'String'>
   readonly body: Prisma.FieldRef<"NewsPost", 'String'>
   readonly coverImageUrl: Prisma.FieldRef<"NewsPost", 'String'>
+  readonly images: Prisma.FieldRef<"NewsPost", 'String'>
   readonly published: Prisma.FieldRef<"NewsPost", 'Boolean'>
   readonly publishedAt: Prisma.FieldRef<"NewsPost", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"NewsPost", 'DateTime'>

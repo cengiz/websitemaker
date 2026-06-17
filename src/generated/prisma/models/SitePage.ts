@@ -41,6 +41,7 @@ export type SitePageMinAggregateOutputType = {
   slug: string | null
   body: string | null
   imageUrl: string | null
+  images: string | null
   seoDescription: string | null
   sortOrder: number | null
   published: boolean | null
@@ -54,6 +55,7 @@ export type SitePageMaxAggregateOutputType = {
   slug: string | null
   body: string | null
   imageUrl: string | null
+  images: string | null
   seoDescription: string | null
   sortOrder: number | null
   published: boolean | null
@@ -67,6 +69,7 @@ export type SitePageCountAggregateOutputType = {
   slug: number
   body: number
   imageUrl: number
+  images: number
   seoDescription: number
   sortOrder: number
   published: number
@@ -90,6 +93,7 @@ export type SitePageMinAggregateInputType = {
   slug?: true
   body?: true
   imageUrl?: true
+  images?: true
   seoDescription?: true
   sortOrder?: true
   published?: true
@@ -103,6 +107,7 @@ export type SitePageMaxAggregateInputType = {
   slug?: true
   body?: true
   imageUrl?: true
+  images?: true
   seoDescription?: true
   sortOrder?: true
   published?: true
@@ -116,6 +121,7 @@ export type SitePageCountAggregateInputType = {
   slug?: true
   body?: true
   imageUrl?: true
+  images?: true
   seoDescription?: true
   sortOrder?: true
   published?: true
@@ -216,6 +222,7 @@ export type SitePageGroupByOutputType = {
   slug: string
   body: string | null
   imageUrl: string | null
+  images: string | null
   seoDescription: string | null
   sortOrder: number
   published: boolean
@@ -252,6 +259,7 @@ export type SitePageWhereInput = {
   slug?: Prisma.StringFilter<"SitePage"> | string
   body?: Prisma.StringNullableFilter<"SitePage"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"SitePage"> | string | null
+  images?: Prisma.StringNullableFilter<"SitePage"> | string | null
   seoDescription?: Prisma.StringNullableFilter<"SitePage"> | string | null
   sortOrder?: Prisma.IntFilter<"SitePage"> | number
   published?: Prisma.BoolFilter<"SitePage"> | boolean
@@ -266,6 +274,7 @@ export type SitePageOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   body?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  images?: Prisma.SortOrderInput | Prisma.SortOrder
   seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   published?: Prisma.SortOrder
@@ -284,6 +293,7 @@ export type SitePageWhereUniqueInput = Prisma.AtLeast<{
   slug?: Prisma.StringFilter<"SitePage"> | string
   body?: Prisma.StringNullableFilter<"SitePage"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"SitePage"> | string | null
+  images?: Prisma.StringNullableFilter<"SitePage"> | string | null
   seoDescription?: Prisma.StringNullableFilter<"SitePage"> | string | null
   sortOrder?: Prisma.IntFilter<"SitePage"> | number
   published?: Prisma.BoolFilter<"SitePage"> | boolean
@@ -298,6 +308,7 @@ export type SitePageOrderByWithAggregationInput = {
   slug?: Prisma.SortOrder
   body?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  images?: Prisma.SortOrderInput | Prisma.SortOrder
   seoDescription?: Prisma.SortOrderInput | Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   published?: Prisma.SortOrder
@@ -319,6 +330,7 @@ export type SitePageScalarWhereWithAggregatesInput = {
   slug?: Prisma.StringWithAggregatesFilter<"SitePage"> | string
   body?: Prisma.StringNullableWithAggregatesFilter<"SitePage"> | string | null
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"SitePage"> | string | null
+  images?: Prisma.StringNullableWithAggregatesFilter<"SitePage"> | string | null
   seoDescription?: Prisma.StringNullableWithAggregatesFilter<"SitePage"> | string | null
   sortOrder?: Prisma.IntWithAggregatesFilter<"SitePage"> | number
   published?: Prisma.BoolWithAggregatesFilter<"SitePage"> | boolean
@@ -331,6 +343,7 @@ export type SitePageCreateInput = {
   slug: string
   body?: string | null
   imageUrl?: string | null
+  images?: string | null
   seoDescription?: string | null
   sortOrder?: number
   published?: boolean
@@ -345,6 +358,7 @@ export type SitePageUncheckedCreateInput = {
   slug: string
   body?: string | null
   imageUrl?: string | null
+  images?: string | null
   seoDescription?: string | null
   sortOrder?: number
   published?: boolean
@@ -357,6 +371,7 @@ export type SitePageUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -371,6 +386,7 @@ export type SitePageUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -384,6 +400,7 @@ export type SitePageCreateManyInput = {
   slug: string
   body?: string | null
   imageUrl?: string | null
+  images?: string | null
   seoDescription?: string | null
   sortOrder?: number
   published?: boolean
@@ -396,6 +413,7 @@ export type SitePageUpdateManyMutationInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -409,6 +427,7 @@ export type SitePageUncheckedUpdateManyInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -437,6 +456,7 @@ export type SitePageCountOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   body?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   seoDescription?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   published?: Prisma.SortOrder
@@ -454,6 +474,7 @@ export type SitePageMaxOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   body?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   seoDescription?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   published?: Prisma.SortOrder
@@ -467,6 +488,7 @@ export type SitePageMinOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   body?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  images?: Prisma.SortOrder
   seoDescription?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   published?: Prisma.SortOrder
@@ -525,6 +547,7 @@ export type SitePageCreateWithoutSiteInput = {
   slug: string
   body?: string | null
   imageUrl?: string | null
+  images?: string | null
   seoDescription?: string | null
   sortOrder?: number
   published?: boolean
@@ -537,6 +560,7 @@ export type SitePageUncheckedCreateWithoutSiteInput = {
   slug: string
   body?: string | null
   imageUrl?: string | null
+  images?: string | null
   seoDescription?: string | null
   sortOrder?: number
   published?: boolean
@@ -578,6 +602,7 @@ export type SitePageScalarWhereInput = {
   slug?: Prisma.StringFilter<"SitePage"> | string
   body?: Prisma.StringNullableFilter<"SitePage"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"SitePage"> | string | null
+  images?: Prisma.StringNullableFilter<"SitePage"> | string | null
   seoDescription?: Prisma.StringNullableFilter<"SitePage"> | string | null
   sortOrder?: Prisma.IntFilter<"SitePage"> | number
   published?: Prisma.BoolFilter<"SitePage"> | boolean
@@ -590,6 +615,7 @@ export type SitePageCreateManySiteInput = {
   slug: string
   body?: string | null
   imageUrl?: string | null
+  images?: string | null
   seoDescription?: string | null
   sortOrder?: number
   published?: boolean
@@ -602,6 +628,7 @@ export type SitePageUpdateWithoutSiteInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -614,6 +641,7 @@ export type SitePageUncheckedUpdateWithoutSiteInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -626,6 +654,7 @@ export type SitePageUncheckedUpdateManyWithoutSiteInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seoDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -641,6 +670,7 @@ export type SitePageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   slug?: boolean
   body?: boolean
   imageUrl?: boolean
+  images?: boolean
   seoDescription?: boolean
   sortOrder?: boolean
   published?: boolean
@@ -655,6 +685,7 @@ export type SitePageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   slug?: boolean
   body?: boolean
   imageUrl?: boolean
+  images?: boolean
   seoDescription?: boolean
   sortOrder?: boolean
   published?: boolean
@@ -669,6 +700,7 @@ export type SitePageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   slug?: boolean
   body?: boolean
   imageUrl?: boolean
+  images?: boolean
   seoDescription?: boolean
   sortOrder?: boolean
   published?: boolean
@@ -683,13 +715,14 @@ export type SitePageSelectScalar = {
   slug?: boolean
   body?: boolean
   imageUrl?: boolean
+  images?: boolean
   seoDescription?: boolean
   sortOrder?: boolean
   published?: boolean
   createdAt?: boolean
 }
 
-export type SitePageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteId" | "title" | "slug" | "body" | "imageUrl" | "seoDescription" | "sortOrder" | "published" | "createdAt", ExtArgs["result"]["sitePage"]>
+export type SitePageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "siteId" | "title" | "slug" | "body" | "imageUrl" | "images" | "seoDescription" | "sortOrder" | "published" | "createdAt", ExtArgs["result"]["sitePage"]>
 export type SitePageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   site?: boolean | Prisma.SiteDefaultArgs<ExtArgs>
 }
@@ -712,6 +745,7 @@ export type $SitePagePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     slug: string
     body: string | null
     imageUrl: string | null
+    images: string | null
     seoDescription: string | null
     sortOrder: number
     published: boolean
@@ -1146,6 +1180,7 @@ export interface SitePageFieldRefs {
   readonly slug: Prisma.FieldRef<"SitePage", 'String'>
   readonly body: Prisma.FieldRef<"SitePage", 'String'>
   readonly imageUrl: Prisma.FieldRef<"SitePage", 'String'>
+  readonly images: Prisma.FieldRef<"SitePage", 'String'>
   readonly seoDescription: Prisma.FieldRef<"SitePage", 'String'>
   readonly sortOrder: Prisma.FieldRef<"SitePage", 'Int'>
   readonly published: Prisma.FieldRef<"SitePage", 'Boolean'>

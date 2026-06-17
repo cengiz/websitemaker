@@ -1,4 +1,7 @@
+"use client";
+
 import { ImageUploadField } from "@/components/dashboard/ImageUploadField";
+import { GalleryField } from "@/components/dashboard/GalleryField";
 import { SlugField } from "@/components/dashboard/SlugField";
 import { RichTextEditor } from "@/components/dashboard/RichTextEditor";
 import type { NewsPost } from "@/generated/prisma/client";
@@ -24,6 +27,11 @@ export function NewsForm({
       <SlugField urlPrefix={`/s/${siteSlug}/haberler/`} initialValue={post?.slug ?? ""} />
 
       <ImageUploadField name="coverImageUrl" siteId={siteId} initialUrl={post?.coverImageUrl} label="Kapak görseli" />
+
+      <GalleryField
+        siteId={siteId}
+        initialImages={post?.images ? JSON.parse(post.images) : []}
+      />
 
       <label className="flex flex-col gap-1">
         <span className="text-sm font-medium text-zinc-700">Özet</span>

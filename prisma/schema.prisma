@@ -81,6 +81,7 @@ model SitePage {
   slug      String
   body           String?
   imageUrl       String?
+  images         String?
   seoDescription String?
   sortOrder      Int      @default(0)
   published Boolean  @default(true)
@@ -132,6 +133,7 @@ model NewsPost {
   excerpt       String?
   body          String?
   coverImageUrl String?
+  images        String?
   published     Boolean   @default(true)
   publishedAt   DateTime?
   createdAt     DateTime  @default(now())

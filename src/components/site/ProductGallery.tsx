@@ -6,8 +6,6 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
   const [current, setCurrent] = useState(0);
   const [open, setOpen] = useState(false);
 
-  if (images.length === 0) return null;
-
   const prev = useCallback(() => setCurrent((i) => (i === 0 ? images.length - 1 : i - 1)), [images.length]);
   const next = useCallback(() => setCurrent((i) => (i === images.length - 1 ? 0 : i + 1)), [images.length]);
 
@@ -25,6 +23,8 @@ export function ProductGallery({ images, title }: { images: string[]; title: str
       document.body.style.overflow = "";
     };
   }, [open, prev, next]);
+
+  if (images.length === 0) return null;
 
   return (
     <>

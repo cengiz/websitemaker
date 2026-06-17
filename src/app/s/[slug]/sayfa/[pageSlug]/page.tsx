@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
 import { prisma } from "@/lib/db";
+import { ProductGallery } from "@/components/site/ProductGallery";
 
 const APP_URL = (process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
 
@@ -69,6 +70,18 @@ export default async function SiteCustomPage({
           className="prose prose-sm mt-6 max-w-none text-[var(--site-fg)]"
           dangerouslySetInnerHTML={{ __html: page.body }}
         />
+      )}
+
+      {page.images && (
+        <div className="mt-8">
+          <ProductGallery
+            images={[
+              ...(page.imageUrl ? [page.imageUrl] : []),
+              ...JSON.parse(page.images),
+            ]}
+            title={page.title}
+          />
+        </div>
       )}
     </div>
   );

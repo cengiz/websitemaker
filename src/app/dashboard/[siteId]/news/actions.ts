@@ -37,6 +37,7 @@ const schema = z.object({
   excerpt: z.string().optional().default(""),
   body: z.string().optional().default(""),
   coverImageUrl: z.string().optional().default(""),
+  images: z.string().optional().default("[]"),
   published: z.string().optional(),
 });
 
@@ -62,6 +63,7 @@ export async function createNewsPost(siteId: string, formData: FormData) {
       excerpt: parsed.data.excerpt || null,
       body: body || null,
       coverImageUrl: parsed.data.coverImageUrl || null,
+      images: parsed.data.images !== "[]" ? parsed.data.images : null,
       published,
       publishedAt: published ? new Date() : null,
     },
@@ -101,6 +103,7 @@ export async function updateNewsPost(siteId: string, postId: string, formData: F
       excerpt: parsed.data.excerpt || null,
       body: body || null,
       coverImageUrl: parsed.data.coverImageUrl || null,
+      images: parsed.data.images !== "[]" ? parsed.data.images : null,
       published,
       publishedAt: published ? (post.publishedAt ?? new Date()) : post.publishedAt,
     },

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
 import { prisma } from "@/lib/db";
+import { ProductGallery } from "@/components/site/ProductGallery";
 
 const APP_URL = (process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
 
@@ -71,6 +72,18 @@ export default async function SiteNewsDetailPage({
           className="prose prose-sm mt-4 max-w-none text-[var(--site-fg)]"
           dangerouslySetInnerHTML={{ __html: post.body }}
         />
+      )}
+
+      {post.images && (
+        <div className="mt-8">
+          <ProductGallery
+            images={[
+              ...(post.coverImageUrl ? [post.coverImageUrl] : []),
+              ...JSON.parse(post.images),
+            ]}
+            title={post.title}
+          />
+        </div>
       )}
     </div>
   );

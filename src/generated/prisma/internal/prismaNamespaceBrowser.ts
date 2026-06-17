@@ -136,6 +136,7 @@ export const SitePageScalarFieldEnum = {
   slug: 'slug',
   body: 'body',
   imageUrl: 'imageUrl',
+  images: 'images',
   seoDescription: 'seoDescription',
   sortOrder: 'sortOrder',
   published: 'published',
@@ -183,6 +184,7 @@ export const NewsPostScalarFieldEnum = {
   excerpt: 'excerpt',
   body: 'body',
   coverImageUrl: 'coverImageUrl',
+  images: 'images',
   published: 'published',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt'
