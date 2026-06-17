@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 
+export type ThemeLayout = "classic" | "minimal" | "bold" | "editorial";
+
 export type ThemeVars = {
   "--site-bg": string;
   "--site-fg": string;
@@ -9,6 +11,7 @@ export type ThemeVars = {
   "--site-primary": string;
   "--site-primary-fg": string;
   "--site-font": string;
+  "--site-heading-font": string;
   "--site-radius": string;
   "--site-shadow": string;
 };
@@ -17,16 +20,17 @@ export type Theme = {
   key: string;
   name: string;
   description: string;
+  layout: ThemeLayout;
   fontUrl?: string;
   vars: ThemeVars;
 };
 
 export const THEMES: Theme[] = [
-  // ── Mevcut temalar (güncellendi) ──────────────────────────────────
   {
     key: "classic",
     name: "Klasik",
     description: "Nötr ve sade — gri tonlar, her sektöre uyar.",
+    layout: "classic",
     vars: {
       "--site-bg": "#ffffff",
       "--site-fg": "#1f2937",
@@ -36,6 +40,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#1f2937",
       "--site-primary-fg": "#ffffff",
       "--site-font": "Arial, Helvetica, sans-serif",
+      "--site-heading-font": "Arial, Helvetica, sans-serif",
       "--site-radius": "8px",
       "--site-shadow": "0 1px 4px rgba(0,0,0,0.07)",
     },
@@ -44,6 +49,7 @@ export const THEMES: Theme[] = [
     key: "modern",
     name: "Modern",
     description: "Canlı mavi vurgular, teknoloji ve hizmet siteleri için.",
+    layout: "minimal",
     fontUrl: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
     vars: {
       "--site-bg": "#ffffff",
@@ -54,6 +60,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#2563eb",
       "--site-primary-fg": "#ffffff",
       "--site-font": "Inter, 'Segoe UI', system-ui, sans-serif",
+      "--site-heading-font": "Inter, 'Segoe UI', system-ui, sans-serif",
       "--site-radius": "10px",
       "--site-shadow": "0 2px 8px rgba(37,99,235,0.08)",
     },
@@ -62,6 +69,7 @@ export const THEMES: Theme[] = [
     key: "warm",
     name: "Sıcak",
     description: "Turuncu/kehribar tonlar, restoran ve perakende için.",
+    layout: "editorial",
     vars: {
       "--site-bg": "#fffbf5",
       "--site-fg": "#3f2d1c",
@@ -71,6 +79,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#ea580c",
       "--site-primary-fg": "#ffffff",
       "--site-font": "Georgia, 'Times New Roman', serif",
+      "--site-heading-font": "Georgia, 'Times New Roman', serif",
       "--site-radius": "8px",
       "--site-shadow": "0 2px 8px rgba(234,88,12,0.08)",
     },
@@ -79,6 +88,7 @@ export const THEMES: Theme[] = [
     key: "nature",
     name: "Doğa",
     description: "Yeşil tonlar, sağlık, tarım ve sürdürülebilirlik için.",
+    layout: "classic",
     vars: {
       "--site-bg": "#f7fdf8",
       "--site-fg": "#1c3324",
@@ -88,6 +98,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#16a34a",
       "--site-primary-fg": "#ffffff",
       "--site-font": "'Segoe UI', system-ui, sans-serif",
+      "--site-heading-font": "'Segoe UI', system-ui, sans-serif",
       "--site-radius": "10px",
       "--site-shadow": "0 2px 8px rgba(22,163,74,0.08)",
     },
@@ -96,6 +107,7 @@ export const THEMES: Theme[] = [
     key: "dark",
     name: "Koyu",
     description: "Koyu zemin, şık ve premium görünüm.",
+    layout: "minimal",
     vars: {
       "--site-bg": "#0f1115",
       "--site-fg": "#f4f4f5",
@@ -105,16 +117,16 @@ export const THEMES: Theme[] = [
       "--site-primary": "#eab308",
       "--site-primary-fg": "#1a1a1a",
       "--site-font": "'Segoe UI', system-ui, sans-serif",
+      "--site-heading-font": "'Segoe UI', system-ui, sans-serif",
       "--site-radius": "10px",
       "--site-shadow": "0 4px 16px rgba(0,0,0,0.4)",
     },
   },
-
-  // ── Yeni modern temalar ───────────────────────────────────────────
   {
     key: "midnight",
     name: "Midnight",
     description: "Derin lacivert zemin, elektrik mavisi vurgu. Yazılım ve SaaS.",
+    layout: "bold",
     fontUrl: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
     vars: {
       "--site-bg": "#060d1f",
@@ -125,6 +137,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#3b82f6",
       "--site-primary-fg": "#ffffff",
       "--site-font": "Inter, system-ui, sans-serif",
+      "--site-heading-font": "Inter, system-ui, sans-serif",
       "--site-radius": "12px",
       "--site-shadow": "0 4px 24px rgba(0,0,0,0.5)",
     },
@@ -133,6 +146,7 @@ export const THEMES: Theme[] = [
     key: "rose",
     name: "Rose",
     description: "Pembe ve krem tonlar. Moda, güzellik ve yaşam tarzı.",
+    layout: "minimal",
     fontUrl: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap",
     vars: {
       "--site-bg": "#fff5f7",
@@ -143,6 +157,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#e11d48",
       "--site-primary-fg": "#ffffff",
       "--site-font": "'DM Sans', system-ui, sans-serif",
+      "--site-heading-font": "'DM Sans', system-ui, sans-serif",
       "--site-radius": "16px",
       "--site-shadow": "0 2px 12px rgba(225,29,72,0.10)",
     },
@@ -151,6 +166,7 @@ export const THEMES: Theme[] = [
     key: "slate",
     name: "Slate",
     description: "Soğuk griler ve firuze vurgu. Kurumsal ve danışmanlık.",
+    layout: "classic",
     fontUrl: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
     vars: {
       "--site-bg": "#f8fafc",
@@ -161,6 +177,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#0d9488",
       "--site-primary-fg": "#ffffff",
       "--site-font": "Inter, system-ui, sans-serif",
+      "--site-heading-font": "Inter, system-ui, sans-serif",
       "--site-radius": "6px",
       "--site-shadow": "0 1px 6px rgba(13,148,136,0.08)",
     },
@@ -169,6 +186,7 @@ export const THEMES: Theme[] = [
     key: "obsidian",
     name: "Obsidian",
     description: "Saf siyah zemin, altın vurgu. Premium ve lüks markalar.",
+    layout: "editorial",
     fontUrl: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap",
     vars: {
       "--site-bg": "#0a0a0a",
@@ -179,6 +197,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#d4a843",
       "--site-primary-fg": "#0a0a0a",
       "--site-font": "'DM Sans', system-ui, sans-serif",
+      "--site-heading-font": "'Playfair Display', Georgia, serif",
       "--site-radius": "4px",
       "--site-shadow": "0 4px 20px rgba(0,0,0,0.6)",
     },
@@ -187,6 +206,7 @@ export const THEMES: Theme[] = [
     key: "sage",
     name: "Sage",
     description: "Soluk yeşil tonlar. Sağlık, wellness ve organik ürünler.",
+    layout: "minimal",
     fontUrl: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap",
     vars: {
       "--site-bg": "#f2f5f2",
@@ -197,6 +217,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#4a7c59",
       "--site-primary-fg": "#ffffff",
       "--site-font": "'DM Sans', system-ui, sans-serif",
+      "--site-heading-font": "'DM Sans', system-ui, sans-serif",
       "--site-radius": "12px",
       "--site-shadow": "0 2px 10px rgba(74,124,89,0.10)",
     },
@@ -205,6 +226,7 @@ export const THEMES: Theme[] = [
     key: "violet",
     name: "Violet",
     description: "Zengin mor tonlar. Yaratıcı ajanslar ve dijital stüdyolar.",
+    layout: "bold",
     fontUrl: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
     vars: {
       "--site-bg": "#faf5ff",
@@ -215,6 +237,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#7c3aed",
       "--site-primary-fg": "#ffffff",
       "--site-font": "Inter, system-ui, sans-serif",
+      "--site-heading-font": "Inter, system-ui, sans-serif",
       "--site-radius": "14px",
       "--site-shadow": "0 2px 12px rgba(124,58,237,0.12)",
     },
@@ -223,6 +246,7 @@ export const THEMES: Theme[] = [
     key: "terracotta",
     name: "Terracotta",
     description: "Toprak ve kilden ilham. El sanatları, butik ve gastronomi.",
+    layout: "editorial",
     fontUrl: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@400;500&display=swap",
     vars: {
       "--site-bg": "#fdf8f5",
@@ -233,6 +257,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#c2522b",
       "--site-primary-fg": "#ffffff",
       "--site-font": "'DM Sans', system-ui, sans-serif",
+      "--site-heading-font": "'Playfair Display', Georgia, serif",
       "--site-radius": "8px",
       "--site-shadow": "0 2px 10px rgba(194,82,43,0.10)",
     },
@@ -241,6 +266,7 @@ export const THEMES: Theme[] = [
     key: "arctic",
     name: "Arctic",
     description: "Buzul beyazı ve buz mavisi. Temiz, minimal teknoloji.",
+    layout: "minimal",
     fontUrl: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
     vars: {
       "--site-bg": "#f0f7ff",
@@ -251,6 +277,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#0369a1",
       "--site-primary-fg": "#ffffff",
       "--site-font": "Inter, system-ui, sans-serif",
+      "--site-heading-font": "Inter, system-ui, sans-serif",
       "--site-radius": "10px",
       "--site-shadow": "0 2px 10px rgba(3,105,161,0.08)",
     },
@@ -259,6 +286,7 @@ export const THEMES: Theme[] = [
     key: "monochrome",
     name: "Monochrome",
     description: "Saf siyah-beyaz. Typografi odaklı, ultra minimal.",
+    layout: "editorial",
     fontUrl: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap",
     vars: {
       "--site-bg": "#ffffff",
@@ -269,6 +297,7 @@ export const THEMES: Theme[] = [
       "--site-primary": "#000000",
       "--site-primary-fg": "#ffffff",
       "--site-font": "'DM Sans', system-ui, sans-serif",
+      "--site-heading-font": "'DM Sans', system-ui, sans-serif",
       "--site-radius": "0px",
       "--site-shadow": "none",
     },
@@ -277,6 +306,7 @@ export const THEMES: Theme[] = [
     key: "forest",
     name: "Forest",
     description: "Derin koyu yeşil. Lüks ve doğal markalar için.",
+    layout: "editorial",
     fontUrl: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap",
     vars: {
       "--site-bg": "#0b1a10",
@@ -287,8 +317,49 @@ export const THEMES: Theme[] = [
       "--site-primary": "#2ecc71",
       "--site-primary-fg": "#0b1a10",
       "--site-font": "'DM Sans', system-ui, sans-serif",
+      "--site-heading-font": "'Playfair Display', Georgia, serif",
       "--site-radius": "10px",
       "--site-shadow": "0 4px 20px rgba(0,0,0,0.5)",
+    },
+  },
+  {
+    key: "powerhouse",
+    name: "Powerhouse",
+    description: "Saf siyah, neon yeşil vurgu. Spor salonları ve fitness için.",
+    layout: "editorial",
+    fontUrl: "https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap",
+    vars: {
+      "--site-bg": "#0a0a0a",
+      "--site-fg": "#f0eeeb",
+      "--site-muted": "#666666",
+      "--site-card": "#141414",
+      "--site-border": "#222222",
+      "--site-primary": "#c8f535",
+      "--site-primary-fg": "#0a0a0a",
+      "--site-font": "Oswald, 'Arial Narrow', Arial, sans-serif",
+      "--site-heading-font": "Oswald, 'Arial Narrow', Arial, sans-serif",
+      "--site-radius": "0px",
+      "--site-shadow": "0 4px 24px rgba(200,245,53,0.12)",
+    },
+  },
+  {
+    key: "serenity",
+    name: "Serenity",
+    description: "Sıcak beyaz ve muted lavender. Psikoloji, terapi ve koçluk için.",
+    layout: "minimal",
+    fontUrl: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap",
+    vars: {
+      "--site-bg": "#fefcf9",
+      "--site-fg": "#1a1917",
+      "--site-muted": "#8a8278",
+      "--site-card": "#f5f2ec",
+      "--site-border": "#e5dfd5",
+      "--site-primary": "#9b7fa6",
+      "--site-primary-fg": "#ffffff",
+      "--site-font": "'Plus Jakarta Sans', system-ui, sans-serif",
+      "--site-heading-font": "'Plus Jakarta Sans', system-ui, sans-serif",
+      "--site-radius": "20px",
+      "--site-shadow": "0 2px 16px rgba(155,127,166,0.12)",
     },
   },
 ];

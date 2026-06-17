@@ -24,7 +24,7 @@ export function NewsForm({
         <input className="input" name="title" defaultValue={post?.title ?? ""} required />
       </label>
 
-      <SlugField urlPrefix={`/s/${siteSlug}/haberler/`} initialValue={post?.slug ?? ""} />
+      <SlugField urlPrefix={`/s/${siteSlug}/blog/`} initialValue={post?.slug ?? ""} />
 
       <ImageUploadField name="coverImageUrl" siteId={siteId} initialUrl={post?.coverImageUrl} label="Kapak görseli" />
 

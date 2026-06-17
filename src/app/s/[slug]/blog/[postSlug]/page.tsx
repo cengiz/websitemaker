@@ -31,7 +31,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function SiteNewsDetailPage({
+export default async function SiteBlogDetailPage({
   params,
 }: {
   params: Promise<{ slug: string; postSlug: string }>;
@@ -48,10 +48,10 @@ export default async function SiteNewsDetailPage({
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
       <Link
-        href={`/s/${site.slug}/haberler`}
+        href={`/s/${site.slug}/blog`}
         className="text-sm text-[var(--site-muted)] underline-offset-2 hover:underline"
       >
-        ← Tüm haberler
+        ← Blog
       </Link>
 
       {post.coverImageUrl ? (

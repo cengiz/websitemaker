@@ -73,3 +73,40 @@ body {
   from { width: 0% }
   to { width: 100% }
 }
+
+/* Başlık fontu — layout root div'de tanımlı CSS değişkeninden gelir */
+[data-site-layout] h1,
+[data-site-layout] h2,
+[data-site-layout] h3 {
+  font-family: var(--site-heading-font, inherit);
+}
+
+/* Minimal layout: kart kenarlıksız, hover'da dolgu */
+[data-site-layout="minimal"] .site-card {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+[data-site-layout="minimal"] .site-card:hover {
+  background: var(--site-card);
+  opacity: 1;
+}
+
+/* Bold layout: gölge ağır, kenarlık yok */
+[data-site-layout="bold"] .site-card {
+  border-color: transparent;
+  box-shadow: var(--site-shadow);
+}
+
+/* Editorial layout: sol kenarda vurgu çizgisi */
+[data-site-layout="editorial"] .site-card {
+  background: transparent;
+  border: none;
+  border-left: 3px solid var(--site-primary);
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 1rem;
+}
+[data-site-layout="editorial"] .site-card:hover {
+  opacity: 0.8;
+}

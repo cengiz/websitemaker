@@ -8,7 +8,7 @@ export type MenuItem = {
 export const DEFAULT_MENU: MenuItem[] = [
   { key: "home", label: "Anasayfa", path: "", enabled: true },
   { key: "products", label: "Ürünler", path: "urunler", enabled: true },
-  { key: "news", label: "Haberler", path: "haberler", enabled: true },
+  { key: "news", label: "Blog", path: "blog", enabled: true },
   { key: "contact", label: "İletişim", path: "iletisim", enabled: true },
 ];
 

@@ -71,7 +71,7 @@ export async function createNewsPost(siteId: string, formData: FormData) {
 
   revalidatePath(listUrl);
   revalidatePath(`/s/${site.slug}`);
-  revalidatePath(`/s/${site.slug}/haberler`);
+  revalidatePath(`/s/${site.slug}/blog`);
 
   redirect(`${listUrl}?success=created`);
 }
@@ -111,9 +111,9 @@ export async function updateNewsPost(siteId: string, postId: string, formData: F
 
   revalidatePath(listUrl);
   revalidatePath(`/s/${site.slug}`);
-  revalidatePath(`/s/${site.slug}/haberler`);
-  revalidatePath(`/s/${site.slug}/haberler/${post.slug}`);
-  if (slug !== post.slug) revalidatePath(`/s/${site.slug}/haberler/${slug}`);
+  revalidatePath(`/s/${site.slug}/blog`);
+  revalidatePath(`/s/${site.slug}/blog/${post.slug}`);
+  if (slug !== post.slug) revalidatePath(`/s/${site.slug}/blog/${slug}`);
 
   redirect(`${listUrl}?success=updated`);
 }
@@ -129,7 +129,7 @@ export async function deleteNewsPost(siteId: string, postId: string) {
 
   revalidatePath(listUrl);
   revalidatePath(`/s/${site.slug}`);
-  revalidatePath(`/s/${site.slug}/haberler`);
+  revalidatePath(`/s/${site.slug}/blog`);
 
   redirect(`${listUrl}?success=deleted`);
 }

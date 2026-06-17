@@ -7,10 +7,10 @@ import { prisma } from "@/lib/db";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const site = await getPublicSiteBySlug((await params).slug);
   if (!site) return {};
-  return { title: "Haberler" };
+  return { title: "Blog" };
 }
 
-export default async function SiteNewsPage({
+export default async function SiteBlogPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -26,16 +26,16 @@ export default async function SiteNewsPage({
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12">
-      <h1 className="mb-6 text-2xl font-bold">Haberler</h1>
+      <h1 className="mb-6 text-2xl font-bold">Blog</h1>
 
       {posts.length === 0 ? (
-        <p className="text-[var(--site-muted)]">Henüz haber eklenmemiş.</p>
+        <p className="text-[var(--site-muted)]">Henüz yazı eklenmemiş.</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {posts.map((post) => (
             <Link
               key={post.id}
-              href={`/s/${site.slug}/haberler/${post.slug}`}
+              href={`/s/${site.slug}/blog/${post.slug}`}
               className="site-card p-4"
             >
               {post.coverImageUrl ? (

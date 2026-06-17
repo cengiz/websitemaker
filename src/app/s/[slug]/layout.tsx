@@ -54,16 +54,19 @@ export default async function SiteLayout({
   const site = await getPublicSiteBySlug(slug);
   if (!site) notFound();
 
+  const theme = getTheme(site.themeKey);
   const vars = resolveThemeVars(site.themeKey, site.themeConfig);
-  const fontUrl = getTheme(site.themeKey).fontUrl;
+  const { fontUrl, layout } = theme;
 
   return (
     <div
+      data-site-layout={layout}
       style={{ ...themeVarsToStyle(vars), fontFamily: vars["--site-font"] }}
       className="flex min-h-screen flex-col bg-[var(--site-bg)] text-[var(--site-fg)]"
     >
       {/* eslint-disable-next-line @next/next/no-page-custom-font */}
       {fontUrl && <style dangerouslySetInnerHTML={{ __html: `@import url('${fontUrl}');` }} />}
+
       {site.gaId && (
         <>
           <Script
@@ -90,9 +93,9 @@ export default async function SiteLayout({
         `}</Script>
       )}
 
-      <SiteHeader site={site} />
+      <SiteHeader site={site} layout={layout} />
       <main className="flex-1">{children}</main>
-      <SiteFooter site={site} />
+      <SiteFooter site={site} layout={layout} />
     </div>
   );
 }

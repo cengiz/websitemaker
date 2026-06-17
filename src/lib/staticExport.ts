@@ -115,7 +115,7 @@ export async function generateStaticExport(siteId: string) {
   const pages: PageSpec[] = [
     { urlPath: `/s/${site.slug}`, outFile: "index.html", depth: 0 },
     { urlPath: `/s/${site.slug}/urunler`, outFile: "urunler.html", depth: 0 },
-    { urlPath: `/s/${site.slug}/haberler`, outFile: "haberler.html", depth: 0 },
+    { urlPath: `/s/${site.slug}/blog`, outFile: "blog.html", depth: 0 },
     { urlPath: `/s/${site.slug}/iletisim`, outFile: "iletisim.html", depth: 0 },
     ...products.map((p) => ({
       urlPath: `/s/${site.slug}/urunler/${p.slug}`,
@@ -123,8 +123,8 @@ export async function generateStaticExport(siteId: string) {
       depth: 1,
     })),
     ...news.map((n) => ({
-      urlPath: `/s/${site.slug}/haberler/${n.slug}`,
-      outFile: `haberler/${n.slug}.html`,
+      urlPath: `/s/${site.slug}/blog/${n.slug}`,
+      outFile: `blog/${n.slug}.html`,
       depth: 1,
     })),
     ...sitePages.map((pg) => ({
@@ -214,7 +214,7 @@ async function processHtml(html: string, ctx: ProcessCtx): Promise<string> {
   // 6. Rewrite internal /s/<slug>/... nav links to relative .html paths
   const base = `/s/${ctx.slug}`;
   const hrefRe = new RegExp(
-    `href=(["'])${escapeRegExp(base)}(?:/(urunler|haberler|iletisim|sayfa))?(?:/([a-zA-Z0-9-]+))?\\1`,
+    `href=(["'])${escapeRegExp(base)}(?:/(urunler|blog|iletisim|sayfa))?(?:/([a-zA-Z0-9-]+))?\\1`,
     "g"
   );
   html = html.replace(hrefRe, (_m, quote: string, section?: string, itemSlug?: string) => {
