@@ -36,7 +36,7 @@ export default async function SiteNewsPage({
             <Link
               key={post.id}
               href={`/s/${site.slug}/haberler/${post.slug}`}
-              className="rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-4 transition hover:opacity-90"
+              className="site-card p-4"
             >
               {post.coverImageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element

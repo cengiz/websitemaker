@@ -30,4 +30,46 @@ body {
   .input {
     @apply w-full rounded-md border border-zinc-300 px-3 py-2 text-sm focus:border-zinc-500 focus:outline-none;
   }
+
+  /* Site tema bileşenleri */
+  .site-card {
+    background: var(--site-card);
+    border: 1px solid var(--site-border);
+    border-radius: var(--site-radius);
+    box-shadow: var(--site-shadow);
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .site-card:hover {
+    opacity: 0.92;
+  }
+  .site-btn-primary {
+    background: var(--site-primary);
+    color: var(--site-primary-fg);
+    border-radius: var(--site-radius);
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: opacity 0.15s;
+  }
+  .site-btn-primary:hover {
+    opacity: 0.88;
+  }
+  .site-input {
+    width: 100%;
+    background: var(--site-bg);
+    color: var(--site-fg);
+    border: 1px solid var(--site-border);
+    border-radius: var(--site-radius);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  .site-input:focus {
+    outline: 2px solid var(--site-primary);
+    outline-offset: -1px;
+  }
+}
+
+@keyframes slide-progress {
+  from { width: 0% }
+  to { width: 100% }
 }

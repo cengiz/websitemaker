@@ -37,7 +37,7 @@ export default async function SiteContactPage({
       <h1 className="mb-6 text-2xl font-bold">İletişim</h1>
 
       {hasContactInfo && (
-        <div className="mb-8 flex flex-col gap-3 rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-6">
+        <div className="mb-8 flex flex-col gap-3 site-card p-6">
           {site.contactEmail && (
             <div>
               <p className="text-sm text-[var(--site-muted)]">E-posta</p>
@@ -81,7 +81,7 @@ export default async function SiteContactPage({
         </div>
       )}
 
-      <div className="rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-6">
+      <div className="site-card p-6">
         <h2 className="mb-4 text-lg font-semibold">Mesaj Gönder</h2>
         <ContactForm apiUrl={apiUrl} />
       </div>

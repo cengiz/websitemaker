@@ -56,6 +56,7 @@ export const ModelName = {
   Product: 'Product',
   SitePage: 'SitePage',
   ContactMessage: 'ContactMessage',
+  Slide: 'Slide',
   NewsPost: 'NewsPost'
 } as const
 
@@ -103,7 +104,8 @@ export const SiteScalarFieldEnum = {
   seoDescription: 'seoDescription',
   ogImageUrl: 'ogImageUrl',
   gaId: 'gaId',
-  metaPixelId: 'metaPixelId'
+  metaPixelId: 'metaPixelId',
+  sliderType: 'sliderType'
 } as const
 
 export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
@@ -155,6 +157,22 @@ export const ContactMessageScalarFieldEnum = {
 } as const
 
 export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
+
+
+export const SlideScalarFieldEnum = {
+  id: 'id',
+  siteId: 'siteId',
+  title: 'title',
+  subtitle: 'subtitle',
+  imageUrl: 'imageUrl',
+  linkUrl: 'linkUrl',
+  linkLabel: 'linkLabel',
+  sortOrder: 'sortOrder',
+  published: 'published',
+  createdAt: 'createdAt'
+} as const
+
+export type SlideScalarFieldEnum = (typeof SlideScalarFieldEnum)[keyof typeof SlideScalarFieldEnum]
 
 
 export const NewsPostScalarFieldEnum = {

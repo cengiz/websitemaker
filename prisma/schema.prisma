@@ -42,12 +42,14 @@ model Site {
   ogImageUrl     String?
   gaId           String?
   metaPixelId    String?
+  sliderType     String?  @default("disabled")
 
   user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   products  Product[]
   news      NewsPost[]
   pages     SitePage[]
   messages  ContactMessage[]
+  slides    Slide[]
 
   @@index([userId])
 }
@@ -99,6 +101,23 @@ model ContactMessage {
   message   String
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@index([siteId])
+}
+
+model Slide {
+  id         String   @id @default(cuid())
+  siteId     String
+  title      String?
+  subtitle   String?
+  imageUrl   String?
+  linkUrl    String?
+  linkLabel  String?
+  sortOrder  Int      @default(0)
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
 
   site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
 

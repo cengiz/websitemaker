@@ -75,7 +75,7 @@ export default async function SiteProductsPage({
             <Link
               key={product.id}
               href={`/s/${site.slug}/urunler/${product.slug}`}
-              className="rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-4 transition hover:opacity-90"
+              className="site-card p-4"
             >
               {product.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element

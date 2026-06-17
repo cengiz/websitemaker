@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: "/products", label: "Ürünler" },
   { href: "/news", label: "Haberler" },
   { href: "/pages", label: "Sayfalar" },
+  { href: "/slides", label: "Slider" },
   { href: "/menu", label: "Menü" },
   { href: "/messages", label: "Mesajlar" },
 ] as const;

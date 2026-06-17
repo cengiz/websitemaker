@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
-import { resolveThemeVars, themeVarsToStyle } from "@/lib/themes";
+import { resolveThemeVars, themeVarsToStyle, getTheme } from "@/lib/themes";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 
@@ -55,12 +55,16 @@ export default async function SiteLayout({
   if (!site) notFound();
 
   const vars = resolveThemeVars(site.themeKey, site.themeConfig);
+  const fontUrl = getTheme(site.themeKey).fontUrl;
 
   return (
     <div
       style={{ ...themeVarsToStyle(vars), fontFamily: vars["--site-font"] }}
       className="flex min-h-screen flex-col bg-[var(--site-bg)] text-[var(--site-fg)]"
     >
+      {fontUrl && (
+        <link rel="stylesheet" href={fontUrl} />
+      )}
       {site.gaId && (
         <>
           <Script

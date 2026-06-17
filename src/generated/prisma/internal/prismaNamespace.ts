@@ -389,6 +389,7 @@ export const ModelName = {
   Product: 'Product',
   SitePage: 'SitePage',
   ContactMessage: 'ContactMessage',
+  Slide: 'Slide',
   NewsPost: 'NewsPost'
 } as const
 
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "site" | "product" | "sitePage" | "contactMessage" | "newsPost"
+    modelProps: "user" | "site" | "product" | "sitePage" | "contactMessage" | "slide" | "newsPost"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -779,6 +780,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Slide: {
+      payload: Prisma.$SlidePayload<ExtArgs>
+      fields: Prisma.SlideFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SlideFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SlideFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>
+        }
+        findFirst: {
+          args: Prisma.SlideFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SlideFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>
+        }
+        findMany: {
+          args: Prisma.SlideFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>[]
+        }
+        create: {
+          args: Prisma.SlideCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>
+        }
+        createMany: {
+          args: Prisma.SlideCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SlideCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>[]
+        }
+        delete: {
+          args: Prisma.SlideDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>
+        }
+        update: {
+          args: Prisma.SlideUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>
+        }
+        deleteMany: {
+          args: Prisma.SlideDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SlideUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SlideUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>[]
+        }
+        upsert: {
+          args: Prisma.SlideUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlidePayload>
+        }
+        aggregate: {
+          args: Prisma.SlideAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSlide>
+        }
+        groupBy: {
+          args: Prisma.SlideGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SlideGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SlideCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SlideCountAggregateOutputType> | number
+        }
+      }
+    }
     NewsPost: {
       payload: Prisma.$NewsPostPayload<ExtArgs>
       fields: Prisma.NewsPostFieldRefs
@@ -920,7 +995,8 @@ export const SiteScalarFieldEnum = {
   seoDescription: 'seoDescription',
   ogImageUrl: 'ogImageUrl',
   gaId: 'gaId',
-  metaPixelId: 'metaPixelId'
+  metaPixelId: 'metaPixelId',
+  sliderType: 'sliderType'
 } as const
 
 export type SiteScalarFieldEnum = (typeof SiteScalarFieldEnum)[keyof typeof SiteScalarFieldEnum]
@@ -972,6 +1048,22 @@ export const ContactMessageScalarFieldEnum = {
 } as const
 
 export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
+
+
+export const SlideScalarFieldEnum = {
+  id: 'id',
+  siteId: 'siteId',
+  title: 'title',
+  subtitle: 'subtitle',
+  imageUrl: 'imageUrl',
+  linkUrl: 'linkUrl',
+  linkLabel: 'linkLabel',
+  sortOrder: 'sortOrder',
+  published: 'published',
+  createdAt: 'createdAt'
+} as const
+
+export type SlideScalarFieldEnum = (typeof SlideScalarFieldEnum)[keyof typeof SlideScalarFieldEnum]
 
 
 export const NewsPostScalarFieldEnum = {
@@ -1161,6 +1253,7 @@ export type GlobalOmitConfig = {
   product?: Prisma.ProductOmit
   sitePage?: Prisma.SitePageOmit
   contactMessage?: Prisma.ContactMessageOmit
+  slide?: Prisma.SlideOmit
   newsPost?: Prisma.NewsPostOmit
 }
 

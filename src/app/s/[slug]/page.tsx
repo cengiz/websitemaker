@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicSiteBySlug } from "@/lib/sites";
 import { prisma } from "@/lib/db";
+import { HeroSlider } from "@/components/site/HeroSlider";
+import { CardCarousel } from "@/components/site/CardCarousel";
 
 export async function generateMetadata({
   params,
@@ -24,7 +26,7 @@ export default async function SiteHomePage({
   const site = await getPublicSiteBySlug(slug);
   if (!site) notFound();
 
-  const [products, news] = await Promise.all([
+  const [products, news, slides] = await Promise.all([
     prisma.product.findMany({
       where: { siteId: site.id, published: true },
       orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
@@ -35,12 +37,21 @@ export default async function SiteHomePage({
       orderBy: { createdAt: "desc" },
       take: 3,
     }),
+    prisma.slide.findMany({
+      where: { siteId: site.id, published: true },
+      orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
+    }),
   ]);
 
   const base = `/s/${site.slug}`;
 
+  const sliderType = site.sliderType ?? "disabled";
+
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
+    <div>
+      {sliderType === "hero" && slides.length > 0 && <HeroSlider slides={slides} />}
+      {sliderType === "carousel" && slides.length > 0 && <CardCarousel slides={slides} />}
+      <div className="mx-auto max-w-5xl px-4 py-12">
       <section className="flex flex-col items-start gap-4 py-12 text-center sm:text-left">
         {site.logoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -74,7 +85,7 @@ export default async function SiteHomePage({
               <Link
                 key={product.id}
                 href={`${base}/urunler/${product.slug}`}
-                className="rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-4 transition hover:opacity-90"
+                className="site-card p-4"
               >
                 {product.imageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -109,7 +120,7 @@ export default async function SiteHomePage({
               <Link
                 key={post.id}
                 href={`${base}/haberler/${post.slug}`}
-                className="rounded-lg border border-[var(--site-border)] bg-[var(--site-card)] p-4 transition hover:opacity-90"
+                className="site-card p-4"
               >
                 {post.coverImageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -130,6 +141,7 @@ export default async function SiteHomePage({
           </div>
         </section>
       )}
+      </div>
     </div>
   );
 }

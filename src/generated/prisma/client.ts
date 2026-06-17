@@ -67,6 +67,11 @@ export type SitePage = Prisma.SitePageModel
  */
 export type ContactMessage = Prisma.ContactMessageModel
 /**
+ * Model Slide
+ * 
+ */
+export type Slide = Prisma.SlideModel
+/**
  * Model NewsPost
  * 
  */
