@@ -18,7 +18,7 @@ import TableRow from "@tiptap/extension-table-row";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import Image from "@tiptap/extension-image";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const BTN =
   "rounded px-2 py-1 text-xs font-medium transition hover:bg-zinc-200 disabled:opacity-40 select-none";
@@ -51,16 +51,85 @@ function Btn({
   );
 }
 
+/* ── Image Picker Modal ─────────────────────────────────────────────────── */
+
+function ImagePickerModal({
+  siteId,
+  onSelect,
+  onClose,
+}: {
+  siteId: string;
+  onSelect: (url: string) => void;
+  onClose: () => void;
+}) {
+  const [urls, setUrls] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`/api/upload/list?siteId=${siteId}`)
+      .then((r) => r.json())
+      .then((d) => setUrls(d.urls ?? []))
+      .finally(() => setLoading(false));
+  }, [siteId]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      onClick={onClose}
+    >
+      <div
+        className="relative max-h-[70vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-white p-4 shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-zinc-800">Yüklü görsellerden seç</h3>
+          <button type="button" onClick={onClose} className="text-zinc-400 hover:text-zinc-700">✕</button>
+        </div>
+
+        {loading ? (
+          <p className="py-8 text-center text-sm text-zinc-400">Yükleniyor…</p>
+        ) : urls.length === 0 ? (
+          <p className="py-8 text-center text-sm text-zinc-400">Henüz yüklenmiş görsel yok.</p>
+        ) : (
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+            {urls.map((url) => (
+              <button
+                key={url}
+                type="button"
+                onClick={() => onSelect(url)}
+                className="overflow-hidden rounded-lg border-2 border-transparent hover:border-zinc-400 focus:outline-none focus:border-blue-500"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={url} alt="" className="h-24 w-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Editor ─────────────────────────────────────────────────────────────── */
+
 export function RichTextEditor({
   name,
   initialValue = "",
   placeholder = "İçerik yazın...",
+  siteId,
 }: {
   name: string;
   initialValue?: string;
   placeholder?: string;
+  siteId?: string;
 }) {
   const hiddenRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const [sourceMode, setSourceMode] = useState(false);
+  const [sourceHtml, setSourceHtml] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -104,6 +173,86 @@ export function RichTextEditor({
     }
   }, [editor, initialValue]);
 
+  /* ── Image from file (→ base64) ─────────────────── */
+
+  const insertFileAsBase64 = useCallback(
+    (file: File) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const src = e.target?.result as string;
+        editor?.chain().focus().setImage({ src }).run();
+      };
+      reader.readAsDataURL(file);
+    },
+    [editor]
+  );
+
+  /* ── Paste / Drop image → base64 ────────────────── */
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    function onPaste(e: ClipboardEvent) {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      for (const item of items) {
+        if (item.type.startsWith("image/")) {
+          e.preventDefault();
+          const file = item.getAsFile();
+          if (file) insertFileAsBase64(file);
+          return;
+        }
+      }
+    }
+
+    function onDrop(e: DragEvent) {
+      const files = e.dataTransfer?.files;
+      if (!files?.length) return;
+      for (const file of files) {
+        if (file.type.startsWith("image/")) {
+          e.preventDefault();
+          insertFileAsBase64(file);
+          return;
+        }
+      }
+    }
+
+    function onDragOver(e: DragEvent) {
+      e.preventDefault();
+    }
+
+    el.addEventListener("paste", onPaste);
+    el.addEventListener("drop", onDrop);
+    el.addEventListener("dragover", onDragOver);
+    return () => {
+      el.removeEventListener("paste", onPaste);
+      el.removeEventListener("drop", onDrop);
+      el.removeEventListener("dragover", onDragOver);
+    };
+  }, [insertFileAsBase64]);
+
+  /* ── Source mode toggle ─────────────────────────── */
+
+  function toggleSource() {
+    if (!editor) return;
+    if (!sourceMode) {
+      const html = editor.getHTML();
+      setSourceHtml(html);
+    } else {
+      editor.commands.setContent(sourceHtml);
+      if (hiddenRef.current) hiddenRef.current.value = sourceHtml;
+    }
+    setSourceMode((v) => !v);
+  }
+
+  function handleSourceChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setSourceHtml(e.target.value);
+    if (hiddenRef.current) hiddenRef.current.value = e.target.value;
+  }
+
+  /* ── Toolbar actions ────────────────────────────── */
+
   function addLink() {
     const prev = editor?.getAttributes("link").href ?? "";
     const url = window.prompt("Link URL", prev);
@@ -112,7 +261,7 @@ export function RichTextEditor({
     editor?.chain().focus().setLink({ href: url }).run();
   }
 
-  function addImage() {
+  function addImageUrl() {
     const url = window.prompt("Görsel URL");
     if (url) editor?.chain().focus().setImage({ src: url }).run();
   }
@@ -134,8 +283,21 @@ export function RichTextEditor({
   const inTable = editor.isActive("table");
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" ref={containerRef}>
       <input type="hidden" name={name} ref={hiddenRef} defaultValue={initialValue} />
+
+      {/* Gizli file input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) insertFileAsBase64(file);
+          e.target.value = "";
+        }}
+      />
 
       {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-0.5 rounded-t-md border border-zinc-300 bg-zinc-50 px-2 py-1.5">
@@ -196,8 +358,12 @@ export function RichTextEditor({
         <Btn active={editor.isActive("link")} title="Link ekle/düzenle" onClick={addLink}>🔗</Btn>
         {SEP}
 
-        {/* Image */}
-        <Btn title="Görsel ekle (URL)" onClick={addImage}>🖼</Btn>
+        {/* Image — URL / Dosya / Yüklüler */}
+        <Btn title="Görsel ekle (URL)" onClick={addImageUrl}>🖼</Btn>
+        <Btn title="Görsel ekle (bilgisayardan — base64)" onClick={() => fileInputRef.current?.click()}>📂</Btn>
+        {siteId && (
+          <Btn title="Yüklü görsellerden seç" onClick={() => setPickerOpen(true)}>🗂</Btn>
+        )}
         {SEP}
 
         {/* Table */}
@@ -211,9 +377,37 @@ export function RichTextEditor({
           <Btn title="Satırı sil" onClick={() => editor.chain().focus().deleteRow().run()}>✕Row</Btn>
           <Btn title="Tabloyu sil" onClick={() => editor.chain().focus().deleteTable().run()}>✕Tbl</Btn>
         </>)}
+        {SEP}
+
+        {/* HTML source toggle */}
+        <Btn active={sourceMode} title="HTML kaynağını düzenle" onClick={toggleSource}>
+          {"</>"}
+        </Btn>
       </div>
 
-      <EditorContent editor={editor} />
+      {/* Editor area */}
+      {sourceMode ? (
+        <textarea
+          value={sourceHtml}
+          onChange={handleSourceChange}
+          className="min-h-64 rounded-b-md border-x border-b border-zinc-300 bg-zinc-950 px-4 py-3 font-mono text-xs text-green-400 focus:outline-none"
+          spellCheck={false}
+        />
+      ) : (
+        <EditorContent editor={editor} />
+      )}
+
+      {/* Image picker modal */}
+      {pickerOpen && siteId && (
+        <ImagePickerModal
+          siteId={siteId}
+          onSelect={(url) => {
+            editor.chain().focus().setImage({ src: url }).run();
+            setPickerOpen(false);
+          }}
+          onClose={() => setPickerOpen(false)}
+        />
+      )}
     </div>
   );
 }

@@ -18,7 +18,7 @@ const ALLOWED_HTML = {
   ],
   allowedAttributes: {
     a: ["href", "rel", "target"],
-    img: ["src", "alt", "width", "height"],
+    img: ["src", "alt", "width", "height", "style"],
     th: ["colspan", "rowspan"],
     td: ["colspan", "rowspan"],
     p: ["style"],
@@ -29,6 +29,7 @@ const ALLOWED_HTML = {
   allowedStyles: {
     "*": { "text-align": [/.*/], "color": [/.*/], "background-color": [/.*/] },
   },
+  allowedSchemes: ["http", "https", "mailto", "data"],
 };
 
 const schema = z.object({

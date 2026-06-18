@@ -40,7 +40,7 @@ export function NewsForm({
 
       <label className="flex flex-col gap-1">
         <span className="text-sm font-medium text-zinc-700">İçerik</span>
-        <RichTextEditor name="body" initialValue={post?.body ?? ""} /></label>
+        <RichTextEditor name="body" initialValue={post?.body ?? ""} siteId={siteId} /></label>
 
       <label className="flex items-center gap-2 text-sm font-medium text-zinc-700">
         <input type="checkbox" name="published" defaultChecked={post?.published ?? true} />
