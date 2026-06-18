@@ -25,12 +25,8 @@ RUN npx prisma generate
 # Next.js production build
 RUN npm run build
 
-# Startup script
-COPY start.sh ./start.sh
-RUN chmod +x ./start.sh
-
 EXPOSE 3000
 
 ENV NODE_ENV=production
 
-CMD ["./start.sh"]
+CMD ["sh", "-c", "mkdir -p /data && npx prisma migrate deploy && npx next start -p 3000"]
